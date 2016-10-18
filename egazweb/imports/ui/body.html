@@ -1,11 +1,10 @@
 <body>
   <h1>Tela de login</h1>
 
-  {{#if currentUser }}
+   {{#if currentUser }}
     <p>Você está logado</p>
-    {{>logoutButtons}}
+    {{> atForm state='logOut'}}
   {{else}}
-
-    {{> loginButtons}}
+    {{> atForm state='signIn'}}
   {{/if}}
 </body>
