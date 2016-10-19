@@ -1,0 +1,46 @@
+<template  name="homelayout">
+  <header>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!--<span class="navbar-brand">
+                <img alt="UserAccounts" width="25" height="25" src="/imgs/ua-logo.png">
+              </span> -->
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+              <ul class="nav navbar-nav">
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/private">Private</a></li>
+              </ul>
+              {{#if currentUser}}
+              <ul class="nav navbar-nav navbar-right">
+                <button type="button" id="at-nav-button" class="btn btn-default navbar-btn"  onclick=AccountsTemplates.logout()> Sign out </button>
+              </ul>
+              {{else}}
+                <ul class="nav navbar-nav navbar-right">
+                  <button type="button" id="at-nav-button" class="btn btn-default navbar-btn"  onclick="window.location.href='/signin'"> Sign in </button>
+                </ul>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <h1 align="center"> Seu gestor eficiente</h1>
+
+  </header>
+  <main>
+    <!--
+      <div class="bilboard">
+          <h2>Organize sua empresa</h2>
+      </div> -->
+  </main>
+</template>
