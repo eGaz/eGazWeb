@@ -1,0 +1,19 @@
+<template name="roleslayout">
+<header>
+  {{> homelayout}}
+</header>
+
+  <!--
+    Testing the user in two roles
+  -->
+
+    {{#if   isInRole 'Gestor'}}
+        <h2 align="center">Área do Gestor</h2>
+    {{/if}}
+
+    {{#if   isInRole 'Entregador'}}
+        <h2 align="center">Área do Entregador</h2>
+    {{/if}}
+
+
+</template>

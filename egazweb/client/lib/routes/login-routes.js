@@ -1,5 +1,4 @@
 var myPostLogout = function(){
-  //example redirect after logout
   Router.go('/');
 };
 
