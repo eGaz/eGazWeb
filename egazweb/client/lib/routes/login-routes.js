@@ -14,3 +14,7 @@ Router.route('/', function(){
 Router.route('/signin', function() {
   this.render('signinlayout')
 });
+
+Router.route('/signup', function(){
+  this.route('signuplayout')
+});

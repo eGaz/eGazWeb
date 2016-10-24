@@ -7,8 +7,9 @@
     Testing the user in two roles
   -->
 
-    {{#if   isInRole 'Gestor'}}
+    {{#if   isInRole 'Gestor' }}
         <h2 align="center">Área do Gestor</h2>
+        <button type="button"  align="center" class="btn btn-info btn-lg" onclick="window.location.href='/user-management'"> Gerencia de usuários </button>
     {{/if}}
 
     {{#if   isInRole 'Entregador'}}
