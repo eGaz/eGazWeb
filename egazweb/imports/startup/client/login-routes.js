@@ -1,3 +1,9 @@
+import '../../ui/layout/homelayout.html'
+import '../../ui/layout/signinlayout.html'
+import '../../ui/layout/signuplayout.html'
+import '../../ui/layout/gestorlayout.html'
+import '../../ui/layout/managementlayout.html'
+
 var myPostLogout = function(){
   Router.go('/');
 };

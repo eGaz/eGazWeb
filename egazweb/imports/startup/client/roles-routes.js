@@ -3,5 +3,5 @@ Router.route('/roles', function(){
 });
 
 Router.route('/user-management', function(){
-  this.render('managementlayout')
+  this.render('users')
 });
