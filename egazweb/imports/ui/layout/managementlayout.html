@@ -13,14 +13,19 @@
       <tbody>
         {{#each users}}
           <tr>
-            <td class="text-left text-middle">alo <!-- {{emails.[0].address}} --></td>
+            <td class="text-left text-middle">{{#if isCurrentUser _id}}<label class="label label-success">You!</label>{{/if}} {{emails.[0].address}} </td>
             <td>
-              oi
-              <!--<select name="userRole" class="form-control">
+
+              <select name="userRole" class="form-control">
                 <option selected="{{selected roles.[0] 'Administrador'}}" value="Administrador">Administrador</option>
                 <option selected="{{selected roles.[0] 'Gestor'}}" value="Gestor">Gestor</option>
-                <option selected="{{selected roles.[0] 'employee'}}" value="employee">Employee</option>
-              </select> -->
+                <option selected="{{selected roles.[0] 'Colaborador'}}" value="Colaborador">Colaborador</option>
+                <option selected="{{selected roles.[0] 'Entregador'}}" value="Entregador">Entregador</option>
+
+                <!--<option selected="{{selected roles.[0] 'Administrador'}}" value="Administrador">Administrador</option>
+                <option selected="{{selected roles.[0] 'Gestor'}}" value="Gestor">Gestor</option>
+                <option selected="{{selected roles.[0] 'Entregador'}}" value="employee">Employee</option> -->
+              </select>
             </td>
           </tr>
         {{/each}}

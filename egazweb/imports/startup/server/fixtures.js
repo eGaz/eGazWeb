@@ -12,8 +12,22 @@ Meteor.startup(() => {
   */
 
     /* Por algum motivo adicionar a role Roles.GLOBAL_GROUP
-    não faz possível que se filtre, mesmo usando dois filtros [role, grupo]*/
-    Roles.addUsersToRoles('D3Ps3nhZFeTaJzfKc', 'Administrador');
-    Roles.addUsersToRoles('gYJcycxwyAekgAqtx', 'Gestor');
+    não faz possível que se filtre, mesmo usando dois filtros [role, grupo]
+    Roles.addUsersToRoles('ID_DO_USER', 'Administrador');
+    */
+});
 
+Meteor.methods({
+  setRoleOnUser( options ) {
+  check( options, {
+      user: String,
+      role: String
+    });
+
+    try {
+      Roles.setUserRoles( options.user, [ options.role ] );
+    } catch( exception ) {
+      return exception;
+    }
+  }
 });
