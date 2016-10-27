@@ -4,13 +4,17 @@ import '../../ui/layout/signuplayout.html'
 import '../../ui/layout/gestorlayout.html'
 import '../../ui/layout/managementlayout.html'
 
-var myPostLogout = function(){
+var PostLogout = function(){
   Router.go('/');
+};
+
+var PostLogin = function(){
+  Router.go('/roles');
 };
 
 AccountsTemplates.configure({
     defaultLayout: 'homelayout',
-    onLogoutHook: myPostLogout
+    onLogoutHook: PostLogout
 });
 
 Router.route('/', function(){
@@ -22,5 +26,9 @@ Router.route('/signin', function() {
 });
 
 Router.route('/signup', function(){
-  this.route('signuplayout')
+  this.render('signuplayout')
+});
+
+Accounts.onLogin(function () {
+  Router.go("/roles");
 });

@@ -29,8 +29,6 @@ Template.registerHelper( 'selected', ( v1, v2 ) => {
   return v1 === v2 ? true : false;
 });
 
-
-
 Template.users.events({
   'change [name="userRole"]': function( event, template ) {
     let role = $( event.target ).find( 'option:selected' ).val();
