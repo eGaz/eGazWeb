@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 
-
 Template.users.onCreated( () => {
   Meteor.subscribe( 'users' );
 });

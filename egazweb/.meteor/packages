@@ -29,3 +29,6 @@ matb33:collection-hooks
 random
 check
 audit-argument-checks
+tap:i18n
+aldeed:simple-schema
+aldeed:collection2

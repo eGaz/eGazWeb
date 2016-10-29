@@ -28,7 +28,8 @@ Router.route('/signin', function() {
 Router.route('/signup', function(){
   this.render('signuplayout')
 });
-
+/*
 Accounts.onLogin(function () {
   Router.go("/roles");
 });
+*/

@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {
   /* The Default Roles to eGaz*/
@@ -16,6 +17,16 @@ Meteor.startup(() => {
     Roles.addUsersToRoles('ID_DO_USER', 'Administrador');
     */
 });
+
+/*Accounts.onCreateUser(function(options, user) {
+   // Use provided profile in options, or create an empty object
+   user.profile = options.profile || {};
+   // Assigns first and last names to the newly created user object
+   user.profile.firstName = options.firstName;
+   user.profile.lastName = options.lastName;
+   // Returns the user object
+   return user;
+});*/
 
 Meteor.methods({
   setRoleOnUser( options ) {
