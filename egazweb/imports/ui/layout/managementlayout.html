@@ -2,31 +2,42 @@
 
   {{> homelayout }}
   {{#if isInRole 'Administrador'}}
-    <h4 class="page-header">Users</h4>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Email Address</th>
-          <th class="text-center">Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each users}}
-          <tr>
-            <td class="text-left text-middle">{{#if isCurrentUser _id}}<label class="label label-success">You!</label>{{/if}} {{emails.[0].address}} </td>
-            <td>
+  <div class="container">
+     <div class="row">
+         <!-- Users Panel -->
+         <div class="col-md-6">
+           <h4 class="page-header">Users</h4>
+           <table class="table table-bordered">
+             <thead>
+               <tr>
+                 <th>Email Address</th>
+                 <th class="text-center">Role</th>
+               </tr>
+             </thead>
+             <tbody>
+               {{#each users}}
+               <tr>
+                 <td class="text-left text-middle">{{#if isCurrentUser _id}}<label class="label label-success">You!</label>{{/if}} {{emails.[0].address}} </td>
+                 <td>
 
-              <select name="userRole" class="form-control">
-                <option selected="{{selected roles.[0] 'Administrador'}}" value="Administrador">Administrador</option>
-                <option selected="{{selected roles.[0] 'Gestor'}}" value="Gestor">Gestor</option>
-                <option selected="{{selected roles.[0] 'Colaborador'}}" value="Colaborador">Colaborador</option>
-                <option selected="{{selected roles.[0] 'Entregador'}}" value="Entregador">Entregador</option>
-              </select>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+                   <select name="userRole" class="form-control">
+                     <option selected="{{selected roles.[0] 'Administrador'}}" value="Administrador">Administrador</option>
+                     <option selected="{{selected roles.[0] 'Gestor'}}" value="Gestor">Gestor</option>
+                     <option selected="{{selected roles.[0] 'Colaborador'}}" value="Colaborador">Colaborador</option>
+                     <option selected="{{selected roles.[0] 'Entregador'}}" value="Entregador">Entregador</option>
+                   </select>
+                 </td>
+               </tr>
+               {{/each}}
+             </tbody>
+           </table>
+        </div>
+          <div class="col-md-6">
+            <h4 class="page-header">Empresas</h4>
+            {{> insertCompanyForm }}
+          </div>
+      </div>
+</div>
+
   {{/if}}
-
 </template>

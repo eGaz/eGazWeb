@@ -1,35 +1,42 @@
 <template name= "insertCompanyForm">
-{{homelayout}}
+<!--{{homelayout}}
 
 {{#if isInRole 'Administrador'}}
+-->
+<div class="container">
+   <div class="row">
+       <!-- Users Panel -->
+       <div class="col-md-6">
+          <h4>Cadastro de empresas</h4>
+            <form>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="fantasyname"> Fantasy Name:</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" name="fantasyName" placeholder= "Enter Fantasy name">
+                </div>
+             </div>
 
-  <h2>Cadastro de empresas</h2>
-    <form>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="fantasyname"> Fantasy Name:</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" name="fantasyName" placeholder= "Enter Fantasy name">
+             <div class="form-group">
+               <label class="control-label col-sm-2" for="name"> Name:</label>
+               <div class="col-sm-3">
+                 <input type="text" class="form-control" name="name" placeholder= "Enter Name">
+               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="cnpj"> Cnpj:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" name="cnpj" placeholder= "Enter Cnpj">
+              </div>
+           </div>
+              <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" value="new-company">Submit</button>
+              </div>
+            </div>
+          </form>
         </div>
-     </div>
-
-     <div class="form-group">
-       <label class="control-label col-sm-2" for="name"> Name:</label>
-       <div class="col-sm-3">
-         <input type="text" class="form-control" name="name" placeholder= "Enter Name">
-       </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="cnpj"> Cnpj:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" name="cnpj" placeholder= "Enter Cnpj">
-      </div>
-   </div>
-      <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default" value="new-company">Submit</button>
       </div>
     </div>
-  </form>
-  {{/if}}
+  <!--{{/if}}-->
 </template>

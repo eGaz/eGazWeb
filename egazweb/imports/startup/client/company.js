@@ -20,6 +20,9 @@ if(Meteor.isClient){
 
       Meteor.call('createCompany', fantasyName, name, cnpj);
       console.log(event.type);
+      event.target.fantasyName.value = "";
+      event.target.name.value = "";
+      event.target.cnpj.value = "";
     },
   });
 }
