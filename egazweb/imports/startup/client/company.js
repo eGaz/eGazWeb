@@ -1,23 +1,25 @@
 import { Template } from 'meteor/templating';
+import { Company } from '../../api/company.js';
+import { Meteor} from 'meteor/meteor';
 
-Template.companylayout.helpers({
+import '../../ui/layout/companylayout.html';
+
+Template.insertCompanyForm.helpers({
 
 });
 
-Template.companylayout.events({
-  'submit .new-company'(event) {
-    // Prevent default browser form submit
-    event.preventDefault();
+if(Meteor.isClient){
+  Template.insertCompanyForm.events({
+    'submit form': function(event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+      // Get value from form element
+      const fantasyName = event.target.fantasyName.value;
+      const name = event.target.name.value;
+      const cnpj = event.target.cnpj.value;
 
-    // Get value from form element
-    const target = event.target;
-
-    const fantasyname = target.fantasyname.value;
-    const name = target.name.value;
-    const cnpj = target.cnpj.value;
-
-    Meteor.Call('company.insert', fantasyname, name, cnpj);
-    console.log(event);
-    
-  },
-});
+      Meteor.call('createCompany', fantasyName, name, cnpj);
+      console.log(event.type);
+    },
+  });
+}

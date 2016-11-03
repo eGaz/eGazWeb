@@ -1,26 +1,30 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor} from 'meteor/meteor';
+import { SimpleSchema } from  'meteor/aldeed:simple-schema';
 
-export const Company = new Mongo.Collection('company');
+const Company = new Mongo.Collection("company");
 
-CompanySchema = new SimpleSchema({
+Company.attachSchema(new SimpleSchema({
   fantasyName: {type: String},
   name: {type: String},
   cnpj: {type: Number},
-});
-
-Company.attachSchema(CompanySchema);
+}));
 
 Meteor.methods({
-  'company.insert'(fantasyName, name, Cnpj){
-    check(fantasyName, String);
-    check(name, String);
-    check(cnpj, String);
-    Company.insert({
-      fantasyName,
-      name,
-      cnpj,
-      createdAt: new Date(),
-    });
-  }
+    'createCompany': function(fantasyName, name, cnpj){
+      check(fantasyName, String);
+      check(name, String);
+      check(cnpj, String);
+
+      if (! this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
+
+      Company.insert({
+        fantasyName,
+        name,
+        cnpj,
+        createdAt: new Date(),
+      });
+    }
 });

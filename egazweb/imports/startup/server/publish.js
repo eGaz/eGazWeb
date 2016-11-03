@@ -1,4 +1,3 @@
-
 Meteor.publish( 'users', function() {
   let isAdmin = Roles.userIsInRole( this.userId, 'Administrador' );
 
