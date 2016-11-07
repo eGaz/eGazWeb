@@ -29,6 +29,7 @@ Meteor.methods({
     },
 
     'removeCompany': function(currentCompany){
-      Company.remove({_id: currentCompany});
+      check(currentCompany, String);
+      Company.remove(currentCompany);
     },
 });

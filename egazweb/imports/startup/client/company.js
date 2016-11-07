@@ -30,9 +30,7 @@ if(Meteor.isClient){
       event.target.cnpj.value = "";
     },
     'click .glyphicon-remove': function(event) {
-      console.log("Olá mundo");
-      console.log(Company.findOne());
-      Meteor.call('removeCompany');
+      Meteor.call('removeCompany', this._id);
     }
   });
 }
@@ -41,8 +39,4 @@ Template.Company.helpers({
   companies(){
     return Company.find({});
   },
-  companiesFindOne(){
-    return Company.findOne();
-  }
-
 });
