@@ -1,3 +1,3 @@
+import '../../api/company.js'
 import './fixtures.js'
 import './publish.js'
-import '../../api/company.js'

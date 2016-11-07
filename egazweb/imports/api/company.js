@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor} from 'meteor/meteor';
 import { SimpleSchema } from  'meteor/aldeed:simple-schema';
 
-const Company = new Mongo.Collection("company");
+export const Company = new Mongo.Collection("company");
 
 Company.attachSchema(new SimpleSchema({
   fantasyName: {type: String},
@@ -26,5 +26,5 @@ Meteor.methods({
         cnpj,
         createdAt: new Date(),
       });
-    }
+    },
 });

@@ -2,7 +2,7 @@ import '../../ui/layout/homelayout.html'
 import '../../ui/layout/companylayout.html'
 
 Router.route('/company', function(){
-  this.render('insertCompanyForm')
+  this.render('Company')
 });
 
 Router.route('/company/new', function(){

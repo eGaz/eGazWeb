@@ -1,15 +1,19 @@
 import { Template } from 'meteor/templating';
 import { Company } from '../../api/company.js';
 import { Meteor} from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+import { Schemas } from 'meteor/aldeed:simple-schema'
 
 import '../../ui/layout/companylayout.html';
+import '../../ui/layout/managementlayout.html';
 
-Template.insertCompanyForm.helpers({
-
-});
+Meteor.subscribe('companies');
 
 if(Meteor.isClient){
-  Template.insertCompanyForm.events({
+  Template.Company.onCreated( function() {
+});
+
+  Template.Company.events({
     'submit form': function(event) {
       // Prevent default browser form submit
       event.preventDefault();
@@ -24,5 +28,14 @@ if(Meteor.isClient){
       event.target.name.value = "";
       event.target.cnpj.value = "";
     },
+    'click .glyphicon-remove': function(event) {
+      
+    }
   });
 }
+
+Template.Company.helpers({
+  companies(){
+    return Company.find({});
+  }
+});

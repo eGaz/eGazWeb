@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Accounts } from 'meteor/accounts-base';
+import  '../../api/company.js';
 
 Meteor.startup(() => {
   /* The Default Roles to eGaz*/

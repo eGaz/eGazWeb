@@ -1,3 +1,5 @@
+import { Company } from '../../api/company.js';
+
 Meteor.publish( 'users', function() {
   let isAdmin = Roles.userIsInRole( this.userId, 'Administrador' );
 
@@ -8,4 +10,8 @@ Meteor.publish( 'users', function() {
   } else {
     return null;
   }
+});
+
+Meteor.publish("companies", function(){
+    return Company.find();
 });
