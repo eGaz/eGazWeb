@@ -27,4 +27,8 @@ Meteor.methods({
         createdAt: new Date(),
       });
     },
+
+    'removeCompany': function(currentCompany){
+      Company.remove({_id: currentCompany});
+    },
 });

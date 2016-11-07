@@ -15,3 +15,6 @@ Meteor.publish( 'users', function() {
 Meteor.publish("companies", function(){
     return Company.find();
 });
+Meteor.publish("companiesFindOne", function(){
+    return Company.findOne();
+});

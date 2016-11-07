@@ -8,6 +8,7 @@ import '../../ui/layout/companylayout.html';
 import '../../ui/layout/managementlayout.html';
 
 Meteor.subscribe('companies');
+Meteor.subscribe('companiesFindOne');
 
 if(Meteor.isClient){
   Template.Company.onCreated( function() {
@@ -29,7 +30,9 @@ if(Meteor.isClient){
       event.target.cnpj.value = "";
     },
     'click .glyphicon-remove': function(event) {
-      
+      console.log("Olá mundo");
+      console.log(Company.findOne());
+      Meteor.call('removeCompany');
     }
   });
 }
@@ -37,5 +40,9 @@ if(Meteor.isClient){
 Template.Company.helpers({
   companies(){
     return Company.find({});
+  },
+  companiesFindOne(){
+    return Company.findOne();
   }
+
 });
