@@ -1,0 +1,12 @@
+@font-face {
+ font-family: 'Raleway', sans-serif;
+   src: url(‘/fonts/Raleway/Raleway-Regular.ttf’);
+ font-weight: normal;
+ font-style: normal;
+
+}
+
+body{
+    font-family: 'Raleway';
+    font-size: 175%;
+}
