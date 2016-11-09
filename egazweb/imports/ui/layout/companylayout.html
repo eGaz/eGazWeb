@@ -7,39 +7,37 @@
    <div class="row">
        <!-- Users Panel -->
        <div class="col-md-6">
-          <h4>Cadastro de empresas</h4>
             <form>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="fantasyname"> Fantasy Name:</label>
-                <div class="col-sm-3">
-                  <input type="text" class="form-control" name="fantasyName" placeholder= "Enter Fantasy name">
+                <h4>Nova Empresa</h4>
+                <div class="row">
+
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" name="fantasyName" placeholder= "Nome Fantasia">
+                    </div>
+
                 </div>
+             <br>
+             <div class="row">
+                  <div class="col-md-5">
+                       <input type="text" class="form-control" name="name" placeholder= "Nome Completo">
+                  </div>
+
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="cnpj" placeholder= "Cnpj">
+                  </div>
+
+                  <div class="col-md-3">
+                    <button type="submit" align="right" class="btn btn-default pull-right" value="new-company">Cadastrar</button>
+                  </div>
              </div>
 
-             <div class="form-group">
-               <label class="control-label col-sm-2" for="name"> Name:</label>
-               <div class="col-sm-3">
-                 <input type="text" class="form-control" name="name" placeholder= "Enter Name">
-               </div>
-            </div>
-
-            <div class="form-group">
-              <label class="control-label col-sm-2" for="cnpj"> Cnpj:</label>
-              <div class="col-sm-3">
-                <input type="text" class="form-control" name="cnpj" placeholder= "Enter Cnpj">
-              </div>
-           </div>
-              <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" value="new-company">Submit</button>
-              </div>
 
 
-            </div>
           </form>
 
           <!-- Tabela de empresas-->
           <div>
+          <br>
             <table class="table table-bordered">
               <thead>
                 <tr>
