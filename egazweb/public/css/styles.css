@@ -1,0 +1,846 @@
+/*
+    =====================
+    Base styles
+    --------------
+    Contents
+    ========*/
+/*  Genaral styles
+    |__ Body text
+    |__ Links
+    |__ Headings
+    |__ Emphasis & misc
+    |__ Home Section Texts
+    |__ Home Section Texts
+    Typography
+    Atmosphere
+    Hacks
+*/
+/*
+  ========================================
+  Genaral styles
+  ========================================
+*/
+/*
+ Body text
+ -------------------------
+ */
+
+/*
+ Links
+ -------------------------
+ */
+
+/*
+ Headings
+-------------------------
+*/
+/* Body Content */
+/*  Bootstrap Useful Text Classes
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
+*/
+/*
+    ======================
+    Modules styles
+    --------------
+    Contents
+    ========
+        Animations
+        |__ Ripple effect
+        |__ Animated Navicon
+        |__ Loaders
+        Generic Layout Classes --( set 01 )--
+        |__ Home Section Texts
+        |__ Sections Titles
+        |__ Emphasis & misc
+        |__ Columns Of Same Height
+        |__ Sections Layout
+        Buttons
+        |__ Animated buttons
+            |__ Split Button
+            |__ Slide Button
+            |__ Play Button
+
+        Navbar
+        |__ Sticky Navbar
+        |__ Transparent Sticky Navbar
+
+        Carousel
+        |__ Owl Carousel
+        |__ Genaral Controls Modifications
+            |__ Carousel arrows
+            |__ Carosel indicators
+        |__ Making Bootstrap carousel fade instead of sliding
+        |__ Falling Carousel Indicators Style
+        |__ Filling Carousel Indicators Style
+
+        Animate Slider Styles
+        Skill Bars
+*/
+/*
+  ========================================
+  Animations
+  ========================================
+*/
+/*
+ Ripple Effect
+ -------------------------
+ */
+/*animation effect*/
+/*
+ Animated Navicon
+ -------------------------
+ */
+/*
+  ========================================
+  Generic Layout Classes --( set 01 )--
+  ========================================
+*/
+
+/*
+ Home Section Texts
+ -------------------------
+ */
+.hs-text-1 {
+  position: relative;
+  margin-top: 0;
+  font-size: 30px;
+  letter-spacing: 33px;
+  margin-right: -33px;
+  font-weight: 400;
+  color: #fff;
+  opacity: .9;
+}
+.hs-text-2 {
+  position: relative;
+  margin-top: 0;
+  font-size: 36px;
+  letter-spacing: .1em;
+  margin-right: -0.1em;
+  line-height: 1.2;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 1;
+}
+.hs-text-3 {
+  position: relative;
+  margin-top: 0;
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: .85;
+}
+.hs-text-4 {
+  position: relative;
+  margin-top: 0;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: .2em;
+  margin-right: -0.2em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.hs-text-5 {
+  position: relative;
+  margin-top: 0;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.hs-text-6 {
+  position: relative;
+  margin-top: 0;
+  font-size: 14px;
+  letter-spacing: .35em;
+  margin-right: -0.35em;
+  line-height: 1.2;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.hs-text-7 {
+  position: relative;
+  margin-top: 0;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: .6em;
+  margin-right: -0.6em;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.hs-text-8 {
+  position: relative;
+  margin-top: 0;
+  display: inline-block;
+  padding: 15px 24px;
+  background: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-right: -2px;
+  font-weight: 400;
+  color: #171724;
+}
+.hs-text-8 > span {
+  margin: 0 10px;
+}
+.hs-text-8.highlight {
+  background: #e41919;
+  opacity: .65;
+}
+.hs-text-8.transparent {
+  background: none;
+  color: #ffffff;
+  padding: 0;
+}
+.hs-text-9 {
+  position: relative;
+  margin-top: 0;
+  font-size: 30px;
+  letter-spacing: .5em;
+  margin-right: -0.5em;
+  line-height: 1.8;
+  font-weight: 100;
+  opacity: .9;
+}
+.hs-text-10 {
+  position: relative;
+  margin-top: 0;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: .1em;
+  margin-right: -0.1em;
+  font-weight: 100;
+}
+.hs-text-10 span:not(.cd-words-wrapper) {
+  font-weight: 900;
+}
+.hs-text-11 {
+
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: .1em;
+  font-weight: 700;
+}
+.hs-text-11 span em {
+  text-transform: lowercase;
+}
+.hs-text-11 span i:first-child em {
+  text-transform: uppercase;
+}
+.hs-text-11 span:not(.cd-words-wrapper) {
+  font-weight: 100;
+}
+.hs-text-12 {
+  position: relative;
+  margin-top: 0;
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+.hs-text-12 span {
+  font-weight: 700;
+}
+.hs-text-13 {
+  position: relative;
+  margin-top: 0;
+  font-size: 48px;
+  line-height: 1.4;
+  letter-spacing: .2em;
+  margin-right: -0.2em;
+  font-weight: 400;
+}
+.hs-text-14 {
+  font-size: 20px;
+  line-height: 2;
+  letter-spacing: 1.1em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.hs-text-detail {
+  display: inline-block;
+  position: relative;
+  text-transform: capitalize;
+  font-weight: 500;
+  letter-spacing: 10px;
+  margin-right: -10px;
+  font-size: 11px;
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+/*
+ Sections Titles
+ -------------------------
+ */
+
+/*
+ Emphasis & misc
+ -------------------------
+ */
+
+/*
+  ========================================
+                   Buttons
+  ========================================
+*/
+.btn {
+  display: inline-block;
+  line-height: 1.5;
+  min-width: 162px;
+  max-width: 270px;
+  padding: 8px 20px;
+  border-radius: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
+  -webkit-transition: color 0.27s ease-out, background 0.27s ease-out, border 0.27s ease-out 0s;
+          transition: color 0.27s ease-out, background 0.27s ease-out, border 0.27s ease-out 0s;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: 0;
+}
+.btn:hover,
+.btn:focus {
+  text-decoration: none;
+}
+.btn:active,
+.btn.active {
+  box-shadow: none;
+}
+.btn-small {
+  display: inline-block;
+  line-height: 1.5;
+  min-width: 117px;
+  max-width: 160px;
+  padding: 4px 10px;
+  border-radius: 0;
+  font-size: 10px;
+}
+/*
+ Animated buttons
+ -------------------------
+ */
+.btn-animated {
+  position: relative;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition: all 0.35s ease-out;
+          transition: all 0.35s ease-out;
+}
+.btn-animated > span:not(.ink) {
+  vertical-align: middle;
+}
+/* Split Button */
+.btn-split {
+  overflow: hidden;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.btn-split::before,
+.btn-split::after {
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+          transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.btn-split::before {
+  top: 0;
+  padding-top: 8px;
+}
+.btn-split::after {
+  bottom: 0;
+  line-height: 0;
+}
+.btn-split > span:not(.ink) {
+  display: block;
+  -webkit-transform: scale3d(0.2, 0.2, 1);
+          transform: scale3d(0.2, 0.2, 1);
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+          transition: transform 0.3s, opacity 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+          transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.btn-split .btn-icon {
+  position: relative;
+  height: 16px;
+}
+.btn-split .btn-icon:before {
+  position: absolute;
+  margin: 0;
+  font-size: 20px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+.btn-split:hover::before {
+  -webkit-transform: translate3d(0, -105%, 0);
+          transform: translate3d(0, -105%, 0);
+}
+.btn-split:hover::after {
+  -webkit-transform: translate3d(0, 105%, 0);
+          transform: translate3d(0, 105%, 0);
+}
+.btn-split:hover > span:not(.ink) {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+}
+/* Slide Button */
+.btn-slide {
+  overflow: hidden;
+  -webkit-transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+          transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+.btn-slide > span:not(.ink) {
+  display: inline-block;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+          transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.btn-slide .btn-icon {
+  line-height: 37.5px;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 8px;
+  font-size: 24px;
+  -webkit-transform: translate3d(50px, 0, 0);
+          transform: translate3d(50px, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+          transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.btn-slide.btn-small .btn-icon {
+  line-height: 24px;
+  font-size: 18px;
+}
+.btn-slide:hover > span:not(.ink) {
+  -webkit-transform: translate3d(-8px, 0, 0);
+          transform: translate3d(-8px, 0, 0);
+}
+.btn-slide:hover .btn-icon {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+/* Play Button */
+
+/*
+  ========================================
+                Navbar
+  ========================================
+*/
+/* Sticky Navbar */
+.sticky-navbar {
+  top: 0;
+  position: absolute;
+  z-index: 2000;
+  width: 100%;
+  padding-top: 60px;
+}
+.sticky-navbar #nav {
+  position: relative;
+  width: 100%;
+  top: -60px;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.sticky-navbar #nav.affix {
+  visibility: visible;
+  position: fixed;
+  -webkit-transform: translate3d(0, 60px, 0);
+          transform: translate3d(0, 60px, 0);
+  width: 100%;
+  opacity: 0.9;
+  -webkit-transition: -webkit-transform .5s;
+          transition: transform .5s;
+}
+/* Transparent Sticky Navbar */
+.transp-nav.sticky-navbar #nav {
+  position: absolute;
+  width: 100%;
+  top: auto;
+  bottom: 0;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+.transp-nav.sticky-navbar #nav.affix {
+  visibility: visible;
+  position: fixed;
+  top: -60px;
+  bottom: auto;
+  width: 100%;
+  opacity: 0.9;
+  -webkit-transform: translate3d(0, 60px, 0);
+          transform: translate3d(0, 60px, 0);
+  -webkit-transition: -webkit-transform .5s;
+          transition: transform .5s;
+}
+.sticky-visible {
+  padding-top: 0;
+}
+.navbar-nav-elastic {
+  margin-top: 103px;
+}
+/*
+  ========================================
+                Carousel
+  ========================================
+*/
+/*
+ Carosel indicators
+ -------------------------
+ */
+/*=============================================
+=            Animate Slider Styles            =
+=============================================*/
+
+/*=============================================
+=             Background Slideshow            =
+=============================================*/
+/*
+  ========================================
+               Home Section Text Mask
+  ========================================
+*/
+/*
+  ========================================
+                Skill Bars
+  ========================================
+*/
+/*
+    =========================
+    Layout styles
+    --------------
+    Contents
+    ========
+
+    General Styles
+    Page Loader
+    Scroll Progress Bar
+    Home Section
+    About Section
+    Facts Section
+    Services Section
+    Works Section
+    Project Order
+    Team Section
+    Process Section
+    Testimonials
+    Prices Section
+    Blog Section
+    Contact Section
+    Google Map
+    Footer Section
+
+    Blog Pages Styles
+    Works Pages Styles
+    Blog and Work pages background images
+
+    Generic Layout Classes --( set 02 )--
+
+*/
+/*
+  ========================================
+  General Styles
+  ========================================
+*/
+/*
+  ========================================
+  Scroll Progress Bar
+  ========================================
+*/
+/*============================
+= Home Section               =
+============================*/
+/*
+ Home section Owl slider Backgrounds
+ -------------------------
+ */
+/*
+ Home section SlideShow Backgrounds
+ -------------------------
+ */
+/*=============================
+=  About Section              =
+=============================*/
+/*=============================
+= Facts Section               =
+=============================*/
+/*
+ Go Top Button
+ -------------------------
+ */
+/*
+===============================================
+===============================================
+===========(( Blog Pages Styles  ))============
+===============================================
+===============================================
+
+*/
+/*
+
+/*
+  ========================================
+  Generic Layout Classes --( set 02 )--
+  ========================================
+*/
+/*
+    Responsive styles
+    --------------
+    Contents
+    ========
+    min-width: 481px
+    max-width: 767px
+    min-width: 768px
+    min-width: 992px
+    min-width: 1200px
+    max-width: 480px
+    Blended
+    Animation delays
+*/
+/*
+min-width: 481px
+ -------------------------
+ */
+/*
+max-width: 480px
+ -------------------------
+ */
+@media (max-width: 480px) {
+  .team-item-social {
+    padding: 10px 0;
+  }
+  .team-item-social li {
+    margin: 0 5px;
+  }
+}
+@media (min-width: 992px) {
+  .hs-text-11 {
+    font-size: 75px;
+  }
+}
+/*
+  ========================================
+  Animation & Transition Delay Classes
+  ========================================
+*/
+.delay0-05s {
+  -webkit-animation-delay: .05s;
+          animation-delay: .05s;
+  -webkit-transition-delay: .05s;
+          transition-delay: .05s;
+}
+.delay0-1s {
+  -webkit-animation-delay: .1s;
+          animation-delay: .1s;
+  -webkit-transition-delay: .1s;
+          transition-delay: .1s;
+}
+.delay0-2s {
+  -webkit-animation-delay: .2s;
+          animation-delay: .2s;
+  -webkit-transition-delay: .2s;
+          transition-delay: .2s;
+}
+.delay0-15s {
+  -webkit-animation-delay: .15s;
+          animation-delay: .15s;
+  -webkit-transition-delay: .15s;
+          transition-delay: .15s;
+}
+.delay0-3s {
+  -webkit-animation-delay: .3s;
+          animation-delay: .3s;
+  -webkit-transition-delay: .3s;
+          transition-delay: .3s;
+}
+.delay0-4s {
+  -webkit-animation-delay: .4s;
+          animation-delay: .4s;
+  -webkit-transition-delay: .4s;
+          transition-delay: .4s;
+}
+.delay0-5s {
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
+  -webkit-transition-delay: .5s;
+          transition-delay: .5s;
+}
+.delay0-6s {
+  -webkit-animation-delay: .6s;
+          animation-delay: .6s;
+  -webkit-transition-delay: .6s;
+          transition-delay: .6s;
+}
+.delay0-7s {
+  -webkit-animation-delay: .7s;
+          animation-delay: .7s;
+  -webkit-transition-delay: .7s;
+          transition-delay: .7s;
+}
+.delay0-8s {
+  -webkit-animation-delay: .8s;
+          animation-delay: .8s;
+  -webkit-transition-delay: .8s;
+          transition-delay: .8s;
+}
+.delay0-9s {
+  -webkit-animation-delay: .9s;
+          animation-delay: .9s;
+  -webkit-transition-delay: .9s;
+          transition-delay: .9s;
+}
+.delay1-0s {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
+}
+.delay1-1s {
+  -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+  -webkit-transition-delay: 1.1s;
+          transition-delay: 1.1s;
+}
+.delay1-2s {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+  -webkit-transition-delay: 1.2s;
+          transition-delay: 1.2s;
+}
+.delay1-3s {
+  -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+  -webkit-transition-delay: 1.3s;
+          transition-delay: 1.3s;
+}
+.delay1-4s {
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+  -webkit-transition-delay: 1.4s;
+          transition-delay: 1.4s;
+}
+.delay1-5s {
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+  -webkit-transition-delay: 1.5s;
+          transition-delay: 1.5s;
+}
+.delay1-6s {
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+  -webkit-transition-delay: 1.6s;
+          transition-delay: 1.6s;
+}
+.delay1-7s {
+  -webkit-animation-delay: 1.7s;
+          animation-delay: 1.7s;
+  -webkit-transition-delay: 1.7s;
+          transition-delay: 1.7s;
+}
+.delay1-8s {
+  -webkit-animation-delay: 1.8s;
+          animation-delay: 1.8s;
+  -webkit-transition-delay: 1.8s;
+          transition-delay: 1.8s;
+}
+.delay1-9s {
+  -webkit-animation-delay: 1.9s;
+          animation-delay: 1.9s;
+  -webkit-transition-delay: 1.9s;
+          transition-delay: 1.9s;
+}
+.delay2s {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-transition-delay: 2s;
+          transition-delay: 2s;
+}
+.delay2-5s {
+  -webkit-animation-delay: 2.5s;
+          animation-delay: 2.5s;
+  -webkit-transition-delay: 2.5s;
+          transition-delay: 2.5s;
+}
+.delay3s {
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  -webkit-transition-delay: 3s;
+          transition-delay: 3s;
+}
+.delay3-5s {
+  -webkit-animation-delay: 3.5s;
+          animation-delay: 3.5s;
+  -webkit-transition-delay: 3.5s;
+          transition-delay: 3.5s;
+}
+.delay4s {
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+  -webkit-transition-delay: 4s;
+          transition-delay: 4s;
+}
+.delay4-5s {
+  -webkit-animation-delay: 4.5s;
+          animation-delay: 4.5s;
+  -webkit-transition-delay: 4.5s;
+          transition-delay: 4.5s;
+}
+.delay5s {
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+  -webkit-transition-delay: 5s;
+          transition-delay: 5s;
+}
+.delay5-5s {
+  -webkit-animation-delay: 5.5s;
+          animation-delay: 5.5s;
+  -webkit-transition-delay: 5.5s;
+          transition-delay: 5.5s;
+}
+.delay6s {
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+  -webkit-transition-delay: 6s;
+          transition-delay: 6s;
+}
+.delay6-5s {
+  -webkit-animation-delay: 6.5s;
+          animation-delay: 6.5s;
+  -webkit-transition-delay: 6.5s;
+          transition-delay: 6.5s;
+}
+.slide-out {
+  -webkit-animation-delay: 0s !important;
+          animation-delay: 0s !important;
+}
