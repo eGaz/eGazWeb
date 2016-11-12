@@ -8,3 +8,7 @@ Router.route('/company', function(){
 Router.route('/company/new', function(){
   this.render('newcompanylayout')
 });
+
+Router.route('/deliveryrder', function(){
+  this.render('DeliveryOrder')
+});

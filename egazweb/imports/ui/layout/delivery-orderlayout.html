@@ -1,20 +1,33 @@
+<template name="DeliveryOrder">
+
 <form class="collapse" id="collapseExample">
     <h4>Nova Ordem de entrega</h4>
     <div class="row">
 
         <div class="col-md-12">
-          <input type="text" class="form-control" name="fantasyName" placeholder= "Nome Fantasia">
+          <input type="text" class="form-control" name="neighborhood" placeholder= "Bairro">
         </div>
     </div>
  <br>
  <div class="row">
       <div class="col-md-5">
-           <input type="text" class="form-control" name="name" placeholder= "Nome Completo">
+           <input type="text" class="form-control" name="address" placeholder= "Rua">
       </div>
 
       <div class="col-md-4">
-        <input type="text" class="form-control" name="cnpj" placeholder= "Cnpj">
+        <input type="text" class="form-control" name="number" placeholder= "Número">
       </div>
+
+      <div class="col-md-4">
+            <input type="text" class="form-control" name="amount" placeholder= "Quantidade">
+      </div>
+
+      <div class="col-md-4">
+        <!-- Implementar uma função que traga todos os entregadores da empresa-->
+          <input type="text" class="form-control" name="deliveryMan" placeholder= "Entregador">
+      </div>
+
+
 
       <div class="col-md-3">
         <button type="submit" align="right" class="btn btn-default pull-right" value="new-company">Cadastrar</button>
@@ -22,3 +35,5 @@
  </div>
  <br>
 </form>
+
+</template>

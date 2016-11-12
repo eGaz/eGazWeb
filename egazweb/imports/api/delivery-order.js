@@ -6,7 +6,9 @@ DeliveryOrder.attachSchema(new SimpleSchema({
   neighborhood: {type: String},
   address: {type: String},
   number: {type: Number},
+  amount: {type: Number},
   deliveryMan: {type: [String],  defaultValue: []},
+  createdAt: {type: Date}
 }));
 
 Meteor.methods({
@@ -14,6 +16,8 @@ Meteor.methods({
       check(neighborhood, String);
       check(address, String);
       check(number, Number);
+      check(amount, Number);
+      check(deliveryMan, String);
 
       if (! this.userId) {
         throw new Meteor.Error('not-authorized');
@@ -23,6 +27,7 @@ Meteor.methods({
         neighborhood,
         address,
         number,
+        amount,
         createdAt: new Date(),
       });
     },
