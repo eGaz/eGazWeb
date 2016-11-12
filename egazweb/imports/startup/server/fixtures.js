@@ -11,6 +11,7 @@ Meteor.startup(() => {
   Roles.createRole('Entregador');
   Roles.createRole('Administrador');
   Roles.createRole('Colaborador');
+  Roles.createRole('Convidado');
   */
 
     /* Por algum motivo adicionar a role Roles.GLOBAL_GROUP
@@ -19,15 +20,12 @@ Meteor.startup(() => {
     */
 });
 
-/*Accounts.onCreateUser(function(options, user) {
-   // Use provided profile in options, or create an empty object
-   user.profile = options.profile || {};
-   // Assigns first and last names to the newly created user object
-   user.profile.firstName = options.firstName;
-   user.profile.lastName = options.lastName;
+Accounts.onCreateUser(function(options, user) {
+   // Set a default role to a newly created user
+   user.role = 'Convidado';
    // Returns the user object
    return user;
-});*/
+});
 
 Meteor.methods({
   setRoleOnUser( options ) {

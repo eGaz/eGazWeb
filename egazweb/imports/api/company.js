@@ -8,6 +8,7 @@ Company.attachSchema(new SimpleSchema({
   fantasyName: {type: String},
   name: {type: String},
   cnpj: {type: Number},
+  createdAt: {type: Date}
 }));
 
 Meteor.methods({
