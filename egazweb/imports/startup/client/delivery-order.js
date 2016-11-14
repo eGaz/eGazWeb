@@ -24,9 +24,10 @@ if(Meteor.isClient){
       const neighborhood = event.target.neighborhood.value;
       const address = event.target.address.value;
       const number = event.target.number.value;
+      const type = "callcenter";
       var companyId = Session.get('currentCompany');
 
-      Meteor.call('createDeliveryOrder', neighborhood, address, number, companyId);
+      Meteor.call('createDeliveryOrder', neighborhood, address, number, companyId, type);
       console.log(event.type);
       event.target.neighborhood.value = "";
       event.target.address.value = "";
@@ -39,4 +40,15 @@ Template.Deliveryorder.helpers({
   deliveryorders(){
     return DeliveryOrder.find({});
   },
+});
+
+/** Custom Helpers **/
+
+/** Compares two arguments **/
+Template.registerHelper("equals", function(a,b){
+    return a === b;
+});
+
+Template.registerHelper("formatDate", function(date){
+    return moment(date).format('HH:mm:ss DD/MM');
 });

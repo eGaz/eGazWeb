@@ -17,11 +17,12 @@ DeliveryOrder.attachSchema(new SimpleSchema({
 ));
 
 Meteor.methods({
-    'createDeliveryOrder': function(neighborhood, address, number, companyId){
+    'createDeliveryOrder': function(neighborhood, address, number, companyId, type){
       check(neighborhood, String);
       check(address, String);
       check(number, String);
       check(companyId, String);
+      check(type, String);
 
       if (! this.userId) {
         throw new Meteor.Error('not-authorized');
@@ -32,6 +33,7 @@ Meteor.methods({
         address,
         number,
         companyId,
+        type,
         createdAt: new Date(),
       });
     },
