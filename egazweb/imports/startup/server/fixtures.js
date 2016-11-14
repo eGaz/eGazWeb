@@ -22,7 +22,7 @@ Meteor.startup(() => {
 
 Accounts.onCreateUser(function(options, user) {
    // Set a default role to a newly created user
-   user.role = 'Convidado';
+   user.roles = 'Convidado';
    // Returns the user object
    return user;
 });
@@ -39,5 +39,19 @@ Meteor.methods({
     } catch( exception ) {
       return exception;
     }
+  },
+
+  setUserOnCompany(options){
+      check(options, {
+        user: String,
+        company: String
+      });
+
+      try{
+      /*  Meteor.users.update( {options.user}, {$set: {companyId: options.company}} );*/
+      } catch( exception){
+        return exception;
+      }
   }
+
 });

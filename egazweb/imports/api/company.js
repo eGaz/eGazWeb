@@ -1,6 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor} from 'meteor/meteor';
 import { SimpleSchema } from  'meteor/aldeed:simple-schema';
+import { DeliveryOrder } from './delivery-order.js';
+
 
 export const Company = new Mongo.Collection("company");
 
@@ -8,7 +10,7 @@ Company.attachSchema(new SimpleSchema({
   fantasyName: {type: String},
   name: {type: String},
   cnpj: {type: Number},
-  createdAt: {type: Date}
+  createdAt: {type: Date},
 }));
 
 Meteor.methods({

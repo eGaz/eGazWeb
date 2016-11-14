@@ -41,5 +41,5 @@ Template.users.events({
       }
     });
   },
-
+  
 });

@@ -8,7 +8,6 @@ import '../../ui/layout/companylayout.html';
 import '../../ui/layout/managementlayout.html';
 
 Meteor.subscribe('companies');
-Meteor.subscribe('companiesFindOne');
 
 if(Meteor.isClient){
   Template.Company.onCreated( function() {

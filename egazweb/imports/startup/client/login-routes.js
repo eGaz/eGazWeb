@@ -9,7 +9,7 @@ var PostLogout = function(){
 };
 
 var PostLogin = function(){
-  Router.go('/roles');
+  Router.go('/gestor');
 };
 
 AccountsTemplates.configure({
