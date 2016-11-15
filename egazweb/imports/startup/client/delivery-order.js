@@ -17,7 +17,7 @@ if(Meteor.isClient){
 });
 
   Template.Deliveryorder.events({
-    'submit form': function(event) {
+    'submit [name="newOrder"]': function(event) {
       // Prevent default browser form submit
       event.preventDefault();
       // Get value from form element
@@ -25,14 +25,22 @@ if(Meteor.isClient){
       const address = event.target.address.value;
       const number = event.target.number.value;
       const type = "callcenter";
+      const amount = 1;
       var companyId = Session.get('currentCompany');
 
-      Meteor.call('createDeliveryOrder', neighborhood, address, number, companyId, type);
+      Meteor.call('createDeliveryOrder', neighborhood, address, number, companyId, type, amount);
       console.log(event.type);
       event.target.neighborhood.value = "";
       event.target.address.value = "";
       event.target.number.value = "";
-    },
+  },
+  'submit [name="changeOrderAmount"]': function(event){
+      event.preventDefault();
+
+      const amount = event.target.amount.value;
+      const order = this._id;
+      Meteor.call("changeOrderAmount", order, amount);
+  },
   });
 }
 

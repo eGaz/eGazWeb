@@ -10,3 +10,15 @@ body{
     font-family: 'Raleway';
     font-size: 175%;
 }
+
+.in-line-form input {
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  text-align: center;
+}
+
+.in-line-form input:focus{
+  outline: 0;
+  background-color: silver;
+}

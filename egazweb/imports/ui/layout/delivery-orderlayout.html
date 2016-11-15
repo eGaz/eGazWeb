@@ -9,7 +9,7 @@
          <h4 class="page-header">Nova Ordem de entrega
          <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></span></h4>
 
-          <form class="collapse" id="collapseExample">
+          <form class="collapse" id="collapseExample" name="newOrder">
 
               <div class="row">
 
@@ -68,11 +68,17 @@
                             </td>
                             <td>{{neighborhood}}</td>
                             <td>{{formatDate createdAt}}</td>
-                            <td class="text-center">{{status}}</td>
-                            <td class="text-center">{{status}}</td>
-                            <td class="text-center">{{status}}</td>
-                            <td class="text-center">{{status}}</td>
-                            <td class="text-center">{{status}}</td>
+                            <td class="text-center">{{deliveryMan}}</td>
+
+                            <td>
+                                <form class="in-line-form" name="changeOrderAmount">
+                                    <input class="form-control" type="number" name="amount" value={{amount}}>
+                                </form>
+
+                            </td>
+                            <td class="text-center">{{item}}</td>
+                            <td class="text-center">{{price}}</td>
+                            <td class="text-center">ok</td>
                         </tr>
                         {{/each}}
                     </tbody>
