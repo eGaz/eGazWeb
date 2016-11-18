@@ -30,8 +30,11 @@
   </header>
   <body>
       {{#unless currentUser}}
-         {{> signinlayout}}
+        {{> signinlayout}}
       {{else}}
+        {{#if isInRole 'Gestor'}}
+            {{> managerlayout}}
+        {{/if}}
         <!--{{#if isInRole 'Colaborador'}}
           {{> colaboradorlayout}}
         {{/if }}
