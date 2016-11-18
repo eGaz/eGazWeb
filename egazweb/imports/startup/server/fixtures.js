@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Accounts } from 'meteor/accounts-base';
+import { Session } from 'meteor/session';
 import  '../../api/company.js';
 
 Meteor.startup(() => {
@@ -40,18 +41,4 @@ Meteor.methods({
       return exception;
     }
   },
-
-  setUserOnCompany(options){
-      check(options, {
-        user: String,
-        company: String
-      });
-
-      try{
-      /*  Meteor.users.update( {options.user}, {$set: {companyId: options.company}} );*/
-      } catch( exception){
-        return exception;
-      }
-  }
-
 });
