@@ -1,31 +1,6 @@
 <template name="Employee">
-  <!--
-  <form class="collapse" id="collapseExample">
-      <h4>Cadastro de empregados</h4>
-      <div class="row">
-          <div class="col-md-12">
-            <input type="text" class="form-control" name="fullName" placeholder= "Nome Completo">
-          </div>
-
-      </div>
-   <br>
-   <div class="row">
-        <div class="col-md-5">
-             <input type="text" class="form-control" name="telefone" placeholder= "Telefone">
-        </div>
-
-        <div class="col-md-4">
-          <input type="text" class="form-control" name="cpf" placeholder= "CPF">
-        </div>
-
-        <div class="col-md-3">
-          <button type="submit" align="right" class="btn btn-default pull-right" value="new-employee">Cadastrar</button>
-        </div>
-   </div>
-   <br>
-</form> -->
 {{> homelayout }}
-{{#if isInRole 'Administrador' 'Gestor'}}
+{{#if isInRole 'Administrador,Gestor' }}
 <h4 class="page-header">Users</h4>
 <table class="table table-bordered">
   <thead>

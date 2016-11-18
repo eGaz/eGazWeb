@@ -57,9 +57,15 @@ Template.Employee.helpers({
   },
 });
 
+function userCompany(userId){
+  var company = Meteor.users.findOne({"_id": userId}, { fields: {"company": 1}});
+  return company.company;
+};
+
 Template.Employee.events({
   'click .glyphicon-ok': function(event) {
-    companyId =  Meteor.user().company
+    var userId = Meteor.userId();
+    companyId = userCompany(userId);
 
     Session.set('currentCompany',companyId)
     currentCompany = Session.get('currentCompany')

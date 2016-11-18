@@ -17,14 +17,14 @@ Meteor.startup(() => {
 
     /* Por algum motivo adicionar a role Roles.GLOBAL_GROUP
     não faz possível que se filtre, mesmo usando dois filtros [role, grupo]
-    Roles.addUsersToRoles('ID_DO_USER', 'Administrador');
+    Roles.addUsersToRoles('Bs4iEWneZA5dT6mWA', 'Administrador');
     */
 });
 
 Accounts.onCreateUser(function(options, user) {
    // Set a default role to a newly created user
-   user.roles = 'Convidado';
-   // Returns the user object
+   user.roles= 'Convidado';
+   user.company = '';
    return user;
 });
 
