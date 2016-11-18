@@ -17,7 +17,7 @@ if(Meteor.isClient){
 });
 
   Template.Deliveryorder.events({
-    'submit form': function(event) {
+    'submit [name="newOrder"]': function(event) {
       // Prevent default browser form submit
       event.preventDefault();
       // Get value from form element
@@ -31,12 +31,23 @@ if(Meteor.isClient){
 
       companyId = Session.get('currentCompany');
 
-      Meteor.call('createDeliveryOrder', neighborhood, address, number, companyId);
+      const type = "callcenter";
+      const amount = 1;
+      var companyId = Session.get('currentCompany');
+
+      Meteor.call('createDeliveryOrder', neighborhood, address, number, companyId, type, amount);
       console.log(event.type);
       event.target.neighborhood.value = "";
       event.target.address.value = "";
       event.target.number.value = "";
-    },
+  },
+  'submit [name="changeOrderAmount"]': function(event){
+      event.preventDefault();
+
+      const amount = event.target.amount.value;
+      const order = this._id;
+      Meteor.call("changeOrderAmount", order, amount);
+  },
   });
 }
 
@@ -44,4 +55,15 @@ Template.Deliveryorder.helpers({
   deliveryorders(){
     return DeliveryOrder.find({});
   },
+});
+
+/** Custom Helpers **/
+
+/** Compares two arguments **/
+Template.registerHelper("equals", function(a,b){
+    return a === b;
+});
+
+Template.registerHelper("formatDate", function(date){
+    return moment(date).format('HH:mm:ss DD/MM');
 });

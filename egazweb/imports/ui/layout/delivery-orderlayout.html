@@ -9,7 +9,7 @@
          <h4 class="page-header">Nova Ordem de entrega
          <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></span></h4>
 
-          <form class="collapse" id="collapseExample">
+          <form class="collapse" id="collapseExample" name="newOrder">
 
               <div class="row">
 
@@ -33,29 +33,58 @@
            <br>
           </form>
         <br>
-          <!-- Tabela de ordens de entrega-->
-          <h4>Ordens de Entrega </h4>
-          <div>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th class="text-center">Bairro</th>
-                  <th class="text-center">Horário</th>
-                  <th class="text-center">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each deliveryorders}}
-                <tr>
-                  <td>{{neighborhood}}</td>
-                  <td> {{createdAt}}</td>
-                  <td class="text-center">{{status}}</td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
-    </div>
+
+    <!-- Tabela de ordens de entrega-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Ordens de Entrega </h4>
+                <div class="table-responsive">
+                <table class="table .table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Bairro</th>
+                            <th class="text-center">Horário</th>
+                            <th class="text-center">Entregador</th>
+                            <th class="text-center">Quantidade</th>
+                            <th class="text-center">Item</th>
+                            <th class="text-center">Preço</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        {{#each deliveryorders}}
+                        <tr>
+                            <td>
+                                {{#if equals type 'callcenter'}}
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                                {{else}}
+                                <span class="glyphicon glyphicon-phone"></span>
+                                {{/if}}
+                            </td>
+                            <td>{{neighborhood}}</td>
+                            <td>{{formatDate createdAt}}</td>
+                            <td class="text-center">{{deliveryMan}}</td>
+
+                            <td>
+                                <form class="in-line-form" name="changeOrderAmount">
+                                    <input class="form-control" type="number" name="amount" value={{amount}}>
+                                </form>
+
+                            </td>
+                            <td class="text-center">{{item}}</td>
+                            <td class="text-center">{{price}}</td>
+                            <td class="text-center">ok</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+</div>
 </template>
