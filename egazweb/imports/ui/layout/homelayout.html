@@ -28,10 +28,14 @@
 
 
   </header>
-  <body>
       {{#unless currentUser}}
-         {{> signinlayout}}
+        {{> signinlayout}}
       {{else}}
+        {{#if isInRole 'Gestor'}}
+            {{> managerlayout}}
+        {{/if}}
+        {{/unless}}
+        
         <!--{{#if isInRole 'Colaborador'}}
           {{> colaboradorlayout}}
         {{/if }}
@@ -44,7 +48,7 @@
         {{else }} {{#if isInRole 'Convidado'}}
         {{else}}
         {{/if}}
+
  -->
-      {{/unless}}
-  </body>
+
 </template>
