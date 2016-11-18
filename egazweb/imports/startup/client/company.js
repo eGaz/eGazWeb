@@ -8,9 +8,10 @@ import { Session } from 'meteor/session'
 import '../../ui/layout/companylayout.html';
 import '../../ui/layout/managementlayout.html';
 import '../../ui/layout/employeelayout.html';
-
-Meteor.subscribe('companies');
-Meteor.subscribe('users');
+Deps.autorun(function(){
+  Meteor.subscribe('companies');
+  Meteor.subscribe('users');
+});
 
 if(Meteor.isClient){
   Template.Company.onCreated( function() {
@@ -59,7 +60,7 @@ Template.Employee.helpers({
 Template.Employee.events({
   'click .glyphicon-ok': function(event) {
     companyId =  Meteor.user().company
-    
+
     Session.set('currentCompany',companyId)
     currentCompany = Session.get('currentCompany')
 

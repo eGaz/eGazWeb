@@ -5,8 +5,11 @@ import { Mongo } from 'meteor/mongo';
 import { Schemas } from 'meteor/aldeed:simple-schema';
 import '../../ui/layout/delivery-orderlayout.html';
 
-Meteor.subscribe('deliveryorders');
-Meteor.subscribe('orderincompany');
+Deps.autorun(function(){
+  Meteor.subscribe('deliveryorders');
+  Meteor.subscribe('orderincompany');
+});
+
 
 if(Meteor.isClient){
   Template.Deliveryorder.onCreated( function() {
