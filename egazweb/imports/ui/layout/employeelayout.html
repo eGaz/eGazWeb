@@ -1,22 +1,31 @@
 <template name="Employee">
-{{> homelayout }}
-{{#if isInRole 'Administrador,Gestor' }}
-<h4 class="page-header">Users</h4>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Email Address</th>
-      <th class="text-center"> Adicionar à empresa </th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each users}}
-    <tr>
-      <td> {{emails.[0].address}} </td>
-      <td class="text-center"> <span class="glyphicon glyphicon-ok"></span> </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+    {{> homelayout}}
+{{#if isInRole 'Gestor' }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h4 class="page-header">Relação de Usuários para Cadastro na Empresa </h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th class="text-center"> Adicionar à empresa </th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each users}}
+                <tr>
+                  <td> {{emails.[0].address}} </td>
+                  <td class="text-center"> <span class="glyphicon glyphicon-ok"></span> </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
 {{/if}}
+
 </template>

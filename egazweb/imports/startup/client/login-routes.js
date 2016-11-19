@@ -31,9 +31,6 @@ Router.route('/signup', function(){
 });
 
 
-Router.route('/managerlayout', function(){
-    this.render('managerlayout')
-});
 /*
 Accounts.onLogin(function () {
   Router.go("/roles");
