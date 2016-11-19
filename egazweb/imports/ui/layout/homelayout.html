@@ -31,11 +31,15 @@
       {{#unless currentUser}}
         {{> signinlayout}}
       {{else}}
-        {{#if isInRole 'Gestor'}}
-            {{> managerlayout}}
+        {{#if isInRole 'Administrador'}}
+            {{> users}}
+        {{else}}
+            {{#if isInRole 'Gestor'}}
+                {{> managerlayout}}
+            {{/if}}
         {{/if}}
-        {{/unless}}
-        
+      {{/unless}}
+
         <!--{{#if isInRole 'Colaborador'}}
           {{> colaboradorlayout}}
         {{/if }}
