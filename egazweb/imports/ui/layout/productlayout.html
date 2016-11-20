@@ -1,0 +1,36 @@
+<template name="Product">
+
+  <div class="container">
+     <div class="row">
+         <!-- Users Panel -->
+         <div class="col-md-6">
+           <h4 class="page-header">Novo Produto
+           <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></span></h4>
+
+            <form class="collapse" id="collapseExample" name="newProduct">
+
+                <div class="row">
+
+
+                      <input type="text" class="form-control" name="alias" placeholder= "Nome"><br>
+
+                </div>
+             <div class="row">
+
+                    <textarea class="form-control" name="description" rows="5" placeholder="Descrição completa do produto"></textarea><br>
+
+                    <input type="number" class="form-control" name="stock" placeholder= "Quantidade do estoque"><br>
+                    <input type="text"   class="form-control" name="priceDescription" placeholder= "Nome do preço"><br>
+                    <input type="number" step="0.01"  class="form-control" name="price" placeholder= "Preço"><br>
+
+                    <button type="submit" align="right" class="btn btn-default pull-right" value="new-product">Cadastrar</button>
+
+             </div>
+             <br>
+            </form>
+          <br>
+            </div>
+          </div>
+        </div>
+
+</template>
