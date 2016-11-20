@@ -21,6 +21,11 @@ function userCompany(userId){
   return company.company;
 };
 
+function productCompany(companyId){
+  var company = Company.findOne({"_id": companyId});
+  return company;
+};
+
 //Oncreated functions to templates that work on company collection
 Template.Company.onCreated( function() {
   });
@@ -89,6 +94,25 @@ Template.Product.events({
     event.target.stock.value = "";
     event.target.priceDescription.value = "";
     event.target.price.value = "";
+  },
+  'click .glyphicon-remove': function(event) {
+    Meteor.call('removeProduct', currentCompany, this._id);
+  },
+
+  'click [name="new-price"]':function(event)
+  {
+    event.preventDefault();
+
+    var userId = Meteor.userId();
+    companyId = userCompany(userId);
+
+    Session.set('currentCompany',companyId)
+    currentCompany = Session.get('currentCompany')
+
+    const priceDescription = $('input[name="priceDescription"]').val();
+    const price = $('input[name="price"]').val();
+
+    Meteor.call('createPrice', currentCompany, this._id, priceDescription, price);
   }
 });
 
@@ -96,6 +120,20 @@ Template.Product.events({
 Template.Company.helpers({
   companies(){
     return Company.find({});
+  },
+});
+
+//Helper function to template Product
+Template.Product.helpers({
+  companies(){
+    var userId = Meteor.userId();
+    companyId = userCompany(userId);
+
+    Session.set('currentCompany',companyId)
+    currentCompany = Session.get('currentCompany')
+
+    company = productCompany(currentCompany);
+    return company ;
   },
 });
 

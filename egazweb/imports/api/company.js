@@ -88,4 +88,28 @@ Meteor.methods({
            }}}
       );
       },
+
+    'removeProduct': function(companyId, productId){
+        check(companyId, String)
+        check(productId, String)
+        Company.update({}, {$pull: {products:{ _id: productId}}}, { multi: true });
+    },
+
+    'createPrice': function(companyId, productId, priceDescription, price){
+      check(companyId, String)
+      check(productId, String)
+      check(priceDescription, String)
+      check(price, Number)
+
+        Company.update(companyId, {$addToset: {["products"]: productId,
+          prices:[
+            {
+              "priceDescription": priceDescription,
+              "price": price
+            }
+          ]
+          }
+        }
+      )
+    }
 });
