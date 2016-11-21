@@ -68,7 +68,13 @@
                             </td>
                             <td>{{neighborhood}}</td>
                             <td>{{formatDate createdAt}}</td>
-                            <td class="text-center">{{deliveryMan}}</td>
+                            <td>
+                                <select name="deliveryMan" class="form-control">
+                                    {{#each deliveryManList}}
+                                        <option>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
 
                             <td>
                                 <form class="in-line-form" name="changeOrderAmount">
