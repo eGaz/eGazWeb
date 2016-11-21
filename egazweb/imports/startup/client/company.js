@@ -88,7 +88,7 @@ Template.Product.events({
     const price = event.target.price.value;
 
     Meteor.call('createProduct', currentCompany, alias, description, Number(stock), priceDescription, Number(price));
-
+    FlashMessages.sendSuccess('Produto adicionado');
     event.target.alias.value = "";
     event.target.description.value = "";
     event.target.stock.value = "";
@@ -99,21 +99,29 @@ Template.Product.events({
     Meteor.call('removeProduct', currentCompany, this._id);
   },
 
-  'click [name="new-price"]':function(event)
+  'click .glyphicon-zoom-in': function(event){
+    console.log(this._id)
+    return Session.set('productId', this._id);
+  },
+
+  'click [name="new-price"]':function(event, template)
   {
     event.preventDefault();
-
+    productId = Session.get('productId');
     var userId = Meteor.userId();
     companyId = userCompany(userId);
 
     Session.set('currentCompany',companyId)
     currentCompany = Session.get('currentCompany')
 
-    const priceDescription = $('input[name="priceDescription"]').val();
-    const price = $('input[name="price"]').val();
+    const priceDescription = $('input[name="ModalPriceDescription"]').val();
+    const price = $('input[name="ModalPrice"]').val();
+    console.log(priceDescription)
+    console.log(price)
 
-    Meteor.call('createPrice', currentCompany, this._id, priceDescription, price);
+    Meteor.call('createPrice', currentCompany, productId, priceDescription, Number(price));
   }
+
 });
 
 //Helper function to template company

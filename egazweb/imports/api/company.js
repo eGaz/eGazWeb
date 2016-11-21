@@ -14,7 +14,7 @@ Employees = new SimpleSchema({
 
 Prices = new SimpleSchema({
   priceDescription: {type: String},
-  price: {type: Number}
+  price: {type: Number, decimal: true}
 });
 
 Product = new SimpleSchema({
@@ -101,15 +101,7 @@ Meteor.methods({
       check(priceDescription, String)
       check(price, Number)
 
-        Company.update(companyId, {$addToset: {["products"]: productId,
-          prices:[
-            {
-              "priceDescription": priceDescription,
-              "price": price
-            }
-          ]
-          }
-        }
-      )
+      Company.update({"_id": companyId, "products._id": productId}, { $addToSet: { "products.$.prices": {       "priceDescription": priceDescription, "price": price     } } });
+
     }
 });
