@@ -56,26 +56,38 @@ if(Meteor.isClient){
 
 /** Function to return the deliveryMans in a company **/
 function getDeliveryMen(company){
-    var emailsList = Meteor.users.find(
+    check(company, String);
+    var deliveryMen = Meteor.users.find(
         {"company": company},
         {fields:
-            {"emails.address": 1}
+            {"emails": 1}
         }
-    );
-    return emailsList;
+    ).fetch();
+    return deliveryMen;
 }
 
-function parserDeliveryMen(deliveryMenList){
-    var manVector = [];
-    for (var deliveryMen in deliveryMenList) {
-        manVector.push(deliveryMenList[deliveryMen].emails);
+/** Get the emails arrays from the DeliveryMen List
+*** params: List of DeliveryMen
+*** returns: a Array of Emails **/
+function parserDeliveryMenEmails(deliveryMenList){
+    var emailsJson = JSON.parse(JSON.stringify(deliveryMenList, {indent: true}));
+    var emailsVector = [];
+    for (var email in deliveryMenList) {
+        emailsVector.push(deliveryMenList[email].emails)
     }
+    return emailsVector;
+}
 
-    var emailVector = [];
-    for (var email in manVector) {
-        emailVector.push(manVector[email].address);
+
+/** Get the emails addresses from the emails List
+*** params: Json Object of Emails
+*** returns: a Array of Emails **/
+function parserAddressFromEmails(emailsJson){
+    var addressVector = [];
+    for (var address in emailsJson) {
+        addressVector.push(emailsJson[address][0].address);
     }
-    return manVector;
+    return addressVector;
 }
 
 Template.Deliveryorder.helpers({
@@ -86,11 +98,17 @@ Template.Deliveryorder.helpers({
       const user = Meteor.user();
 
       var deliveryMen = getDeliveryMen(user.company);
-      var listOfEmails = parserDeliveryMen(deliveryMen);
+      var emailsList = parserDeliveryMenEmails(deliveryMen);
+      var addressList = parserAddressFromEmails(emailsList);
 
+      /** Let this logs here intentionaly, to understand how this parser works
       console.log(deliveryMen);
+      console.log(emailsJson[0][0].address);
+      console.log(addressList);
+      **/
 
-      return listOfEmails.address;
+      return addressList;
+
   },
 });
 
