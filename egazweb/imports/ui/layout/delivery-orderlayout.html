@@ -71,7 +71,9 @@
                             <td>
                                 <select name="deliveryMan" class="form-control">
                                     {{#each deliveryManList}}
-                                        <option>{{this}}</option>
+                                      {{#each emails}}
+                                        <option>{{address}}</option>
+                                      {{/each}}
                                     {{/each}}
                                 </select>
                             </td>

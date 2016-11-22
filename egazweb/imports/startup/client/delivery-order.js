@@ -51,31 +51,20 @@ if(Meteor.isClient){
       const order = this._id;
       Meteor.call("changeOrderAmount", order, amount);
   },
+  'change [name="deliveryMan"]': function(event){
+    event.preventDefault();
+
+  },
   });
+
 }
 
 /** Function to return the deliveryMans in a company **/
 function getDeliveryMen(company){
     var emailsList = Meteor.users.find(
-        {"company": company},
-        {fields:
-            {"emails.address": 1}
-        }
-    );
+        {"company": company, "roles": 'Entregador'}
+    ).fetch({});
     return emailsList;
-}
-
-function parserDeliveryMen(deliveryMenList){
-    var manVector = [];
-    for (var deliveryMen in deliveryMenList) {
-        manVector.push(deliveryMenList[deliveryMen].emails);
-    }
-
-    var emailVector = [];
-    for (var email in manVector) {
-        emailVector.push(manVector[email].address);
-    }
-    return manVector;
 }
 
 Template.Deliveryorder.helpers({
@@ -86,11 +75,8 @@ Template.Deliveryorder.helpers({
       const user = Meteor.user();
 
       var deliveryMen = getDeliveryMen(user.company);
-      var listOfEmails = parserDeliveryMen(deliveryMen);
 
-      console.log(deliveryMen);
-
-      return listOfEmails.address;
+      return deliveryMen;
   },
 });
 
