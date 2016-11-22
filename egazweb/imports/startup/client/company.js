@@ -100,7 +100,6 @@ Template.Product.events({
   },
 
   'click .glyphicon-zoom-in': function(event){
-    console.log(this._id)
     return Session.set('productId', this._id);
   },
 
@@ -116,8 +115,6 @@ Template.Product.events({
 
     const priceDescription = $('input[name="ModalPriceDescription"]').val();
     const price = $('input[name="ModalPrice"]').val();
-    console.log(priceDescription)
-    console.log(price)
 
     Meteor.call('createPrice', currentCompany, productId, priceDescription, Number(price));
   }
