@@ -36,23 +36,10 @@
         {{else}}
             {{#if isInRole 'Gestor'}}
                 {{> managerlayout}}
+                {{> Product}}
             {{/if}}
         {{/if}}
       {{/unless}}
 
-        <!--{{#if isInRole 'Colaborador'}}
-          {{> colaboradorlayout}}
-        {{/if }}
-        {{else }} {{# if isInRole 'Administrador'}}
-          {{> managementlayout}}
-        {{/if}}
-        {{else }} {{#ifisInRole 'Gestor'}}
-          {{> gestorlayout}}
-        {{/if}}
-        {{else }} {{#if isInRole 'Convidado'}}
-        {{else}}
-        {{/if}}
-
- -->
 
 </template>
