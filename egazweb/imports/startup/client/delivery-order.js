@@ -51,6 +51,12 @@ if(Meteor.isClient){
       const order = this._id;
       Meteor.call("changeOrderAmount", order, amount);
   },
+  'change [name="deliveryMan"]': function(event){
+      event.preventDefault();
+
+      const deliveryMan = event.target.deliveryManField.value;
+      Meteor.call("updateDeliveryMan", deliveryMan);
+  },
   });
 }
 
