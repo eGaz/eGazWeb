@@ -47,5 +47,14 @@ Meteor.methods({
         DeliveryOrder.update({_id:order}, {$set:{
             amount: amount
         }});
-    }
+      },
+
+      'updateItem': function(order, item){
+        check(order, String);
+        check(item, String);
+
+        DeliveryOrder.update({_id:order}, {$set: {
+          item: item
+        }});
+      }
 });

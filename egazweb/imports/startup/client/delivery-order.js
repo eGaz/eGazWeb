@@ -3,6 +3,7 @@ import { DeliveryOrder } from '../../api/delivery-order.js';
 import { Meteor} from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Schemas } from 'meteor/aldeed:simple-schema';
+import { Company } from '../../api/company.js';
 import '../../ui/layout/delivery-orderlayout.html';
 
 import { Users } from 'meteor/accounts-base';
@@ -11,6 +12,7 @@ Deps.autorun(function(){
   Meteor.subscribe('deliveryorders');
   Meteor.subscribe('orderincompany');
   Meteor.subscribe('users');
+  Meteor.subscribe('companies');
 });
 
 
@@ -44,6 +46,7 @@ if(Meteor.isClient){
       event.target.address.value = "";
       event.target.number.value = "";
   },
+
   'submit [name="changeOrderAmount"]': function(event){
       event.preventDefault();
 
@@ -51,10 +54,19 @@ if(Meteor.isClient){
       const order = this._id;
       Meteor.call("changeOrderAmount", order, amount);
   },
-  'change [name="deliveryMan"]': function(event){
-    event.preventDefault();
 
+  'change [name="productSelect"]': function(event){
+    var sel = event.target;
+    var productId = sel.options[sel.selectedIndex].getAttribute('data-id');
+    var order = this._id;
+    Meteor.call('updateItem', order, productId);
+    return Session.set('productId', productId);
   },
+
+  'change [name="priceSelect"]': function(event){
+    console.log("alo")
+  },
+
   });
 
 }
@@ -63,8 +75,19 @@ if(Meteor.isClient){
 function getDeliveryMen(company){
     var emailsList = Meteor.users.find(
         {"company": company, "roles": 'Entregador'}
-    ).fetch({});
+    );
     return emailsList;
+}
+
+/** Function to return the products in a company**/
+function getProducts(company){
+  var productList = Company.findOne({"_id": company});
+  return productList;
+}
+
+function getPrices(product){
+  var priceList = Company.find({"products._id": product}, { "products": {$elemMatch: {"product._id": product}}}, {$field: {"products.prices": 1}}).fetch({});
+  return priceList;
 }
 
 Template.Deliveryorder.helpers({
@@ -78,6 +101,22 @@ Template.Deliveryorder.helpers({
 
       return deliveryMen;
   },
+  products: function(){
+    const user = Meteor.user();
+    var products = getProducts(user.company);
+      return products;
+  },
+
+  prices: function(){
+    if(Session.equals('productId', undefined)){
+      return
+    }else{
+      var productId = Session.get('productId')
+      console.log(productId);
+      var prices = getPrices(productId);
+      console.log(prices)
+    }
+  }
 });
 
 /** Custom Helpers **/
@@ -89,4 +128,8 @@ Template.registerHelper("equals", function(a,b){
 
 Template.registerHelper("formatDate", function(date){
     return moment(date).format('HH:mm:ss DD/MM');
+});
+
+Template.registerHelper( 'selected', ( v1, v2 ) => {
+  return v1 === v2 ? true : false;
 });
