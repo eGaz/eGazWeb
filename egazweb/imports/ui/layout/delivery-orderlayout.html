@@ -69,9 +69,11 @@
                             <td>{{neighborhood}}</td>
                             <td>{{formatDate createdAt}}</td>
                             <td>
-                                <select name="deliveryMan" class="form-control">
+                                <select name="deliveryMan" class="form-control" id="listaDeEntregadores">
                                     {{#each deliveryManList}}
-                                        <option value="{{this}}" name="deliveryManField">{{this}}</option>
+                                      {{#each emails}}
+                                        <option selected="{{ selected delivery.[0] 'entregador2@example.com' }}">{{address}}</option>
+                                      {{/each}}
                                     {{/each}}
                                 </select>
                             </td>

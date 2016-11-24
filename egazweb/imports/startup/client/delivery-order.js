@@ -51,49 +51,38 @@ if(Meteor.isClient){
       const order = this._id;
       Meteor.call("changeOrderAmount", order, amount);
   },
-  'change [name="deliveryMan"]': function(event){
+  'change [name="deliveryMan"]': function(event, template){
       event.preventDefault();
+      let delivery = $(event.target).find( 'option:selected' ).val();
+      let role = $( event.target ).find( 'option:selected' ).val();
 
-      const deliveryMan = event.target.deliveryManField.value;
-      Meteor.call("updateDeliveryMan", deliveryMan);
+
+      const deliveryMan = event.target.value;
+      const deliveryManId = Meteor.users.findOne({ 'emails.address' : deliveryMan })._id;
+      const order = this._id;
+
+      console.log(deliveryManId);
+      console.log("_idOrder " + order);
+
+      console.log($(event.currentTarget.innerHTML));
+
+      Meteor.call("updateDeliveryMan", order, deliveryManId);
+
   },
   });
+
 }
 
 /** Function to return the deliveryMans in a company **/
 function getDeliveryMen(company){
     check(company, String);
     var deliveryMen = Meteor.users.find(
-        {"company": company},
+        {"company": company, "roles": "Entregador"},
         {fields:
             {"emails": 1}
         }
-    ).fetch();
+    );
     return deliveryMen;
-}
-
-/** Get the emails arrays from the DeliveryMen List
-*** params: List of DeliveryMen
-*** returns: a Array of Emails **/
-function parserDeliveryMenEmails(deliveryMenList){
-    var emailsJson = JSON.parse(JSON.stringify(deliveryMenList, {indent: true}));
-    var emailsVector = [];
-    for (var email in deliveryMenList) {
-        emailsVector.push(deliveryMenList[email].emails)
-    }
-    return emailsVector;
-}
-
-
-/** Get the emails addresses from the emails List
-*** params: Json Object of Emails
-*** returns: a Array of Emails **/
-function parserAddressFromEmails(emailsJson){
-    var addressVector = [];
-    for (var address in emailsJson) {
-        addressVector.push(emailsJson[address][0].address);
-    }
-    return addressVector;
 }
 
 Template.Deliveryorder.helpers({
@@ -104,17 +93,8 @@ Template.Deliveryorder.helpers({
       const user = Meteor.user();
 
       var deliveryMen = getDeliveryMen(user.company);
-      var emailsList = parserDeliveryMenEmails(deliveryMen);
-      var addressList = parserAddressFromEmails(emailsList);
 
-      /** Let this logs here intentionaly, to understand how this parser works
-      console.log(deliveryMen);
-      console.log(emailsJson[0][0].address);
-      console.log(addressList);
-      **/
-
-      return addressList;
-
+      return deliveryMen;
   },
 });
 
@@ -127,4 +107,8 @@ Template.registerHelper("equals", function(a,b){
 
 Template.registerHelper("formatDate", function(date){
     return moment(date).format('HH:mm:ss DD/MM');
+});
+
+Template.registerHelper( 'selected', ( v1, v2 ) => {
+  return v1 === v2 ? true : false;
 });
