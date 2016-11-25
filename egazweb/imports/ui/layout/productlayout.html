@@ -15,7 +15,7 @@
                       <input type="text" class="form-control" name="alias" placeholder= "Nome"><br>
 
                 </div>
-             <div class="row">
+                <div class="row">
 
                     <textarea class="form-control" name="description" rows="5" placeholder="Descrição completa do produto"></textarea><br>
 
@@ -28,11 +28,13 @@
              </div>
              <br>
             </form>
-          <br>
-            </div>
-                    <!-- Tabela de produtos -->
-            <div>
-              <h3>Produtos da empresa: <b>{{companies.fantasyName}}</b> </h3>
+            <br>
+
+            <!-- Tabela de produtos -->
+            <div class="container">
+                <div class="row">
+                    <h3>Produtos da empresa: <b>{{companies.fantasyName}}</b> </h3>
+                </div>
               <br>
               <table class="table table-bordered">
                 <thead>
@@ -83,4 +85,5 @@
 
            </div>
          </div>
+     </div>
 </template>
