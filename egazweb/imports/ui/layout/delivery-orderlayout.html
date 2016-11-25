@@ -68,7 +68,15 @@
                             </td>
                             <td>{{neighborhood}}</td>
                             <td>{{formatDate createdAt}}</td>
-                            <td class="text-center">{{deliveryMan}}</td>
+                            <td>
+                                <select name="deliveryMan" class="form-control" id="listaDeEntregadores">
+                                    {{#each deliveryManList}}
+                                      {{#each emails}}
+                                        <option selected="{{ selected delivery.[0] 'entregador2@example.com' }}">{{address}}</option>
+                                      {{/each}}
+                                    {{/each}}
+                                </select>
+                            </td>
 
                             <td>
                                 <form class="in-line-form" name="changeOrderAmount">
@@ -76,8 +84,25 @@
                                 </form>
 
                             </td>
-                            <td class="text-center">{{item}}</td>
-                            <td class="text-center">{{price}}</td>
+                            <td>
+                                <select name="productSelect" class="form-control">
+                                  <option value=""> Escolha </option>
+                                  {{#each products.products}}
+                                      <option data-id="{{_id}}" value="{{alias}}"> {{alias}} </option>
+                                   {{/each}}
+                                 </select>
+                                <!--<span class="glyphicon glyphicon-zoom-in" data-toggle="modal" data-target="#productModal"></span>-->
+                            </td>
+                            <td>
+                              <select name="priceSelect" class="form-control">
+                                <option value=""> Escolha </option>
+                                  {{#each pricesList}}
+                                  {{#each prices}}
+                                    <option data-value="{{price}}">{{priceDescription}} : {{price}} R$</option>
+                                    {{/each}}
+                                  {{/each}}
+                              </select>
+                            </td>
                             <td class="text-center">ok</td>
                         </tr>
                         {{/each}}
@@ -87,4 +112,33 @@
         </div>
         </div>
 </div>
+
+<!-- Modal de produtos-->
+
+<div class="modal fade" id="productModal" role="dialog">
+   <div class="modal-dialog">
+
+     <!-- Modal content-->
+     <div class="modal-content">
+
+       <div class="modal-body">
+         <h4 class="modal-title" id="myModal">
+           Escolha um produto
+       </h4>
+         <form name="getProducts">
+           <input list="productsList" name ="productsinput">
+           <datalist id= "productsList">
+             {{#each products.products}}
+             <option value="{{_id}}"> {{alias}}</option>
+              {{/each}}
+         </datalist>
+         <input type="submit">
+        </form>
+       </div>
+     </div>
+
+   </div>
+ </div>
+
+
 </template>

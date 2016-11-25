@@ -1,16 +1,15 @@
 <template name="users">
 
-  {{> homelayout }}
   {{#if isInRole 'Administrador'}}
   <div class="container">
      <div class="row">
          <!-- Users Panel -->
          <div class="col-md-6">
-           <h4 class="page-header">Users</h4>
+           <h4 class="page-header">Usuários Cadastrados</h4>
            <table class="table table-bordered">
              <thead>
                <tr>
-                 <th>Email Address</th>
+                 <th>E-mail</th>
                  <th class="text-center">Role</th>
                </tr>
              </thead>
