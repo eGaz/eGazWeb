@@ -96,9 +96,9 @@
                             <td>
                               <select name="priceSelect" class="form-control">
                                 <option value=""> Escolha </option>
-                                  {{#each prices.products}}
-                                    {{#each prices}}
-                                    <option>{{priceDescription}}:{{price}}</option>
+                                  {{#each pricesList}}
+                                  {{#each prices}}
+                                    <option data-value="{{price}}">{{priceDescription}} : {{price}} R$</option>
                                     {{/each}}
                                   {{/each}}
                               </select>

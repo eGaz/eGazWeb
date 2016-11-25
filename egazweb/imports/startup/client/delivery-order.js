@@ -64,7 +64,11 @@ if(Meteor.isClient){
   },
 
   'change [name="priceSelect"]': function(event){
-    console.log("alo")
+  var sel = event.target;
+  var price = sel.options[sel.selectedIndex].getAttribute('data-value');
+  console.log(price)  
+  var order = this._id;
+  Meteor.call('updatePrice', order, Number(price))
   },
 
   });
@@ -85,8 +89,11 @@ function getProducts(company){
   return productList;
 }
 
-function getPrices(product){
-  var priceList = Company.find({"products._id": product}, { "products": {$elemMatch: {"product._id": product}}}, {$field: {"products.prices": 1}}).fetch({});
+function getPrices(company, product){
+  var query = {"_id": company, "products._id": product};
+  var priceList = Company.findOne({"_id": company, "products._id": product}).products.filter( function(s){
+    return s._id === product;
+  });
   return priceList;
 }
 
@@ -107,14 +114,16 @@ Template.Deliveryorder.helpers({
       return products;
   },
 
-  prices: function(){
+  pricesList: function(){
     if(Session.equals('productId', undefined)){
       return
     }else{
       var productId = Session.get('productId')
       console.log(productId);
-      var prices = getPrices(productId);
+      const user = Meteor.user();
+      var prices = getPrices(user.company, productId);
       console.log(prices)
+      return prices;
     }
   }
 });
