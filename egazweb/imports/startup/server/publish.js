@@ -6,10 +6,6 @@ Meteor.publish( 'users', function() {
     return Meteor.users.find( {}, { fields: { "emails.address": 1, "roles": 1, "company": 1} } )
 });
 
-/*Meteor.publish('userCompany', function(userId){
-  return Meteor.users.find({"_id": userId}, { fields: {"company": 1}})
-});*/
-
 Meteor.publish("companies", function(){
     return Company.find();
 });
