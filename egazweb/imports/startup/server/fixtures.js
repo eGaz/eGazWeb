@@ -1,7 +1,8 @@
 import { Template } from 'meteor/templating';
 import { Accounts } from 'meteor/accounts-base';
 import { Session } from 'meteor/session';
-import  '../../api/company.js';
+import { Company } from '../../api/company.js';
+
 
 Meteor.startup(() => {
   /* The Default Roles to eGaz*/
@@ -41,4 +42,8 @@ Meteor.methods({
       return exception;
     }
   },
+  /*getPrices(product){
+    check(product, String)
+    return priceList = Company.aggregate({$match : {"products._id": product}}, { $group : "$products" }, {$match : { "products._id": product }});
+  }*/
 });
