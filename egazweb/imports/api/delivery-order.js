@@ -9,10 +9,10 @@ DeliveryOrder.attachSchema(new SimpleSchema({
       number: {type: String},
       amount: {type: Number, optional: true},
       item: {type: String, optional: true},
-      price: {type: Number, optional: true},
+      price: {type: Number, optional: true, decimal: true},
       companyId: {type: String},
       deliveryMan: {type: String, optional: true},
-      status: {type: String, defaultValue: 'Aberto', allowedValues: ['Aberto', 'Entregue']},
+      status: {type: String, defaultValue: 'Aberto', allowedValues: ['Aberto', 'Encaminhado','Entregue']},
       createdAt: {type: Date}
     },
 ));
@@ -47,5 +47,42 @@ Meteor.methods({
         DeliveryOrder.update({_id:order}, {$set:{
             amount: amount
         }});
-    }
+
+    },
+    'updateDeliveryMan': function(order, deliveryMan){
+        check(deliveryMan, String);
+        check(order, String);
+
+        DeliveryOrder.update({_id: order}, {$set:{
+            deliveryMan: deliveryMan
+        }});
+    },
+
+      'updateItem': function(order, item){
+        check(order, String);
+        check(item, String);
+
+        DeliveryOrder.update({_id:order}, {$set: {
+          item: item
+        }});
+      },
+
+      'updatePrice': function(order, price){
+        check(order, String);
+        check(price, Number);
+
+        DeliveryOrder.update({_id:order}, {$set: {
+          price: price
+        }});
+      },
+
+      'updateStatus': function(order, status){
+        check(order, String)
+        check(status, String)
+
+        DeliveryOrder.update({ _id: order}, {$set: {
+          status: status
+        }});
+      },
+
 });

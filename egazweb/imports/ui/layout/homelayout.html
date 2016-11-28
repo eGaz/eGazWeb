@@ -31,25 +31,15 @@
       {{#unless currentUser}}
         {{> signinlayout}}
       {{else}}
-        {{#if isInRole 'Gestor'}}
-            {{> managerlayout}}
-            {{> Product}}
-        {{/if}}
-        {{/unless}}
-
-        <!--{{#if isInRole 'Colaborador'}}
-          {{> colaboradorlayout}}
-        {{/if }}
-        {{else }} {{# if isInRole 'Administrador'}}
-          {{> managementlayout}}
-        {{/if}}
-        {{else }} {{#ifisInRole 'Gestor'}}
-          {{> gestorlayout}}
-        {{/if}}
-        {{else }} {{#if isInRole 'Convidado'}}
+        {{#if isInRole 'Administrador'}}
+            {{> users}}
         {{else}}
+            {{#if isInRole 'Gestor'}}
+                {{> managerlayout}}
+                {{> Product}}
+            {{/if}}
         {{/if}}
+      {{/unless}}
 
- -->
 
 </template>
