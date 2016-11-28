@@ -3,6 +3,7 @@ import { DeliveryOrder } from '../../api/delivery-order.js';
 import { Meteor} from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Schemas } from 'meteor/aldeed:simple-schema';
+import { Company } from '../../api/company.js';
 import '../../ui/layout/delivery-orderlayout.html';
 
 import { Users } from 'meteor/accounts-base';
@@ -11,6 +12,7 @@ Deps.autorun(function(){
   Meteor.subscribe('deliveryorders');
   Meteor.subscribe('orderincompany');
   Meteor.subscribe('users');
+  Meteor.subscribe('companies');
 });
 
 
@@ -44,6 +46,7 @@ if(Meteor.isClient){
       event.target.address.value = "";
       event.target.number.value = "";
   },
+
   'submit [name="changeOrderAmount"]': function(event){
       event.preventDefault();
 
@@ -51,6 +54,7 @@ if(Meteor.isClient){
       const order = this._id;
       Meteor.call("changeOrderAmount", order, amount);
   },
+
   'change [name="deliveryMan"]': function(event, template){
       event.preventDefault();
       let delivery = $(event.target).find( 'option:selected' ).val();
@@ -68,7 +72,35 @@ if(Meteor.isClient){
 
       Meteor.call("updateDeliveryMan", order, deliveryManId);
 
+
+  'change [name="productSelect"]': function(event){
+    var select = event.target;
+    var productId = select.options[select.selectedIndex].getAttribute('data-id');
+    var order = this._id;
+    Meteor.call('updateItem', order, productId);
+    return Session.set('productId', productId);
   },
+
+  'change [name="priceSelect"]': function(event){
+  var sel = event.target;
+  var price = sel.options[sel.selectedIndex].getAttribute('data-value');
+  console.log(price)
+  var order = this._id;
+  Meteor.call('updatePrice', order, Number(price))
+  },
+
+  'change [name="orderStatus"]': function(event){
+    console.log("alo");
+    var select = event.target;
+    var status = select.options[select.selectedIndex].getAttribute('data-id');
+    console.log(status);
+    var order = this._id;
+    if(status === ""){
+    }else{
+      Meteor.call('updateStatus', order, status);
+    }
+  },
+
   });
 
 }
@@ -85,6 +117,20 @@ function getDeliveryMen(company){
     return deliveryMen;
 }
 
+/** Function to return the products in a company**/
+function getProducts(company){
+  var productList = Company.findOne({"_id": company});
+  return productList;
+}
+
+function getPrices(company, product){
+  var query = {"_id": company, "products._id": product};
+  var priceList = Company.findOne({"_id": company, "products._id": product}).products.filter( function(s){
+    return s._id === product;
+  });
+  return priceList;
+}
+
 Template.Deliveryorder.helpers({
   deliveryorders(){
     return DeliveryOrder.find({});
@@ -96,6 +142,24 @@ Template.Deliveryorder.helpers({
 
       return deliveryMen;
   },
+  products: function(){
+    const user = Meteor.user();
+    var products = getProducts(user.company);
+      return products;
+  },
+
+  pricesList: function(){
+    if(Session.equals('productId', undefined)){
+      return
+    }else{
+      var productId = Session.get('productId')
+      console.log(productId);
+      const user = Meteor.user();
+      var prices = getPrices(user.company, productId);
+      console.log(prices)
+      return prices;
+    }
+  }
 });
 
 /** Custom Helpers **/

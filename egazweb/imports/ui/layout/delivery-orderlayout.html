@@ -53,7 +53,7 @@
                             <th class="text-center">Quantidade</th>
                             <th class="text-center">Item</th>
                             <th class="text-center">Preço</th>
-                            <th class="text-center">Ações</th>
+                            <th class="text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody align="center">
@@ -84,9 +84,33 @@
                                 </form>
 
                             </td>
-                            <td class="text-center">{{item}}</td>
-                            <td class="text-center">{{price}}</td>
-                            <td class="text-center">ok</td>
+                            <td>
+                                <select name="productSelect" class="form-control">
+                                  <option value=""> Escolha </option>
+                                  {{#each products.products}}
+                                      <option data-id="{{_id}}" value="{{alias}}"> {{alias}} </option>
+                                   {{/each}}
+                                 </select>
+                                <!--<span class="glyphicon glyphicon-zoom-in" data-toggle="modal" data-target="#productModal"></span>-->
+                            </td>
+                            <td>
+                              <select name="priceSelect" class="form-control">
+                                <option value=""> Escolha </option>
+                                  {{#each pricesList}}
+                                  {{#each prices}}
+                                    <option data-value="{{price}}">{{priceDescription}} : {{price}} R$</option>
+                                    {{/each}}
+                                  {{/each}}
+                              </select>
+                            </td>
+                            <td class="text-center">
+                              <select name="orderStatus" class="form-control">
+                              <option value=""> {{status}}</option>
+                              <option data-id="Aberto"> Aberto</option>
+                              <option data-id="Encaminhado">Encaminhado</option>
+                              <option data-id="Entregue">Entregue</option>
+                            </select>
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -95,4 +119,5 @@
         </div>
         </div>
 </div>
+
 </template>

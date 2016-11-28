@@ -4,6 +4,7 @@ import '../../ui/layout/signuplayout.html'
 import '../../ui/layout/gestorlayout.html'
 import '../../ui/layout/managementlayout.html'
 import '../../ui/layout/managerlayout.html'
+import '../../ui/layout/productlayout.html'
 
 var PostLogout = function(){
   Router.go('/');
@@ -29,10 +30,3 @@ Router.route('/signin', function() {
 Router.route('/signup', function(){
   this.render('signuplayout')
 });
-
-
-/*
-Accounts.onLogin(function () {
-  Router.go("/roles");
-});
-*/

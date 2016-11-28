@@ -12,12 +12,26 @@ Employees = new SimpleSchema({
   role: {type: String, optional: true},
 });
 
+Prices = new SimpleSchema({
+  priceDescription: {type: String},
+  price: {type: Number, decimal: true}
+});
+
+Product = new SimpleSchema({
+  _id: {type: String},
+  alias: {type: String},
+  description: {type: String},
+  stock: {type: Number, optional: true},
+  prices: {type: [Prices], optional: true}
+});
+
 Company.attachSchema(new SimpleSchema({
   fantasyName: {type: String},
   name: {type: String},
   cnpj: {type: Number},
   createdAt: {type: Date},
-  employees: {type: [Employees], optional: true}
+  employees: {type: [Employees], optional: true},
+  products: {type: [Product], optional: true}
 }));
 
 Meteor.methods({
@@ -51,4 +65,43 @@ Meteor.methods({
         Company.update(companyId, {$addToSet: {["employees"]: {"userId": userId, "role": roles }}});
         Meteor.users.update(userId, {$set: {"company": companyId}});
     },
+
+    'createProduct': function(companyId, alias, description, stock, priceDescription, price){
+      check(companyId, String)
+      check(alias, String)
+      check(description, String)
+      check(stock, Number)
+      check(priceDescription, String)
+      check(price, Number)
+
+      Company.update(companyId, {$addToSet: {["products"]:
+          {"_id": Random.id(),
+            "alias": alias,
+            "description": description,
+            "stock": stock,
+            prices: [
+              {
+              "priceDescription": priceDescription,
+              "price": price
+              }
+            ]
+           }}}
+      );
+      },
+
+    'removeProduct': function(companyId, productId){
+        check(companyId, String)
+        check(productId, String)
+        Company.update({}, {$pull: {products:{ _id: productId}}}, { multi: true });
+    },
+
+    'createPrice': function(companyId, productId, priceDescription, price){
+      check(companyId, String)
+      check(productId, String)
+      check(priceDescription, String)
+      check(price, Number)
+
+      Company.update({"_id": companyId, "products._id": productId}, { $addToSet: { "products.$.prices": {       "priceDescription": priceDescription, "price": price     } } });
+
+    }
 });
