@@ -71,7 +71,7 @@ if(Meteor.isClient){
       console.log($(event.currentTarget.innerHTML));
 
       Meteor.call("updateDeliveryMan", order, deliveryManId);
-
+    },
 
   'change [name="productSelect"]': function(event){
     var select = event.target;

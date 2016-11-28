@@ -58,8 +58,6 @@ Meteor.methods({
         }});
     },
 
-      },
-
       'updateItem': function(order, item){
         check(order, String);
         check(item, String);
