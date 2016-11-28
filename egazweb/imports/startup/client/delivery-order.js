@@ -56,8 +56,8 @@ if(Meteor.isClient){
   },
 
   'change [name="productSelect"]': function(event){
-    var sel = event.target;
-    var productId = sel.options[sel.selectedIndex].getAttribute('data-id');
+    var select = event.target;
+    var productId = select.options[select.selectedIndex].getAttribute('data-id');
     var order = this._id;
     Meteor.call('updateItem', order, productId);
     return Session.set('productId', productId);
@@ -66,10 +66,22 @@ if(Meteor.isClient){
   'change [name="priceSelect"]': function(event){
   var sel = event.target;
   var price = sel.options[sel.selectedIndex].getAttribute('data-value');
-  console.log(price)  
+  console.log(price)
   var order = this._id;
   Meteor.call('updatePrice', order, Number(price))
   },
+  'change [name="orderStatus"]': function(event){
+    console.log("alo");
+    var select = event.target;
+    var status = select.options[select.selectedIndex].getAttribute('data-id');
+    console.log(status);
+    var order = this._id;
+    if(status === ""){
+    }else{
+      Meteor.call('updateStatus', order, status);
+    }
+
+  }
 
   });
 

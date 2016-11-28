@@ -53,7 +53,7 @@
                             <th class="text-center">Quantidade</th>
                             <th class="text-center">Item</th>
                             <th class="text-center">Preço</th>
-                            <th class="text-center">Ações</th>
+                            <th class="text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody align="center">
@@ -103,7 +103,14 @@
                                   {{/each}}
                               </select>
                             </td>
-                            <td class="text-center">ok</td>
+                            <td class="text-center">
+                              <select name="orderStatus" class="form-control">
+                              <option value=""> {{status}}</option>
+                              <option data-id="Aberto"> Aberto</option>
+                              <option data-id="Encaminhado">Encaminhado</option>
+                              <option data-id="Entregue">Entregue</option>
+                            </select>
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -112,33 +119,5 @@
         </div>
         </div>
 </div>
-
-<!-- Modal de produtos-->
-
-<div class="modal fade" id="productModal" role="dialog">
-   <div class="modal-dialog">
-
-     <!-- Modal content-->
-     <div class="modal-content">
-
-       <div class="modal-body">
-         <h4 class="modal-title" id="myModal">
-           Escolha um produto
-       </h4>
-         <form name="getProducts">
-           <input list="productsList" name ="productsinput">
-           <datalist id= "productsList">
-             {{#each products.products}}
-             <option value="{{_id}}"> {{alias}}</option>
-              {{/each}}
-         </datalist>
-         <input type="submit">
-        </form>
-       </div>
-     </div>
-
-   </div>
- </div>
-
 
 </template>
