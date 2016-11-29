@@ -82,23 +82,27 @@ if(Meteor.isClient){
   },
 
   'change [name="priceSelect"]': function(event){
-  var sel = event.target;
-  var price = sel.options[sel.selectedIndex].getAttribute('data-value');
-  console.log(price)
-  var order = this._id;
-  Meteor.call('updatePrice', order, Number(price))
+    var select = event.target;
+    var price = select.options[select.selectedIndex].getAttribute('data-value');
+    var order = this._id;
+    Meteor.call('updatePrice', order, Number(price))
   },
 
   'change [name="orderStatus"]': function(event){
-    console.log("alo");
     var select = event.target;
     var status = select.options[select.selectedIndex].getAttribute('data-id');
-    console.log(status);
     var order = this._id;
     if(status === ""){
     }else{
       Meteor.call('updateStatus', order, status);
     }
+  },
+
+  'change [name="filtroStatus"]': function(event){
+    var select = event.target;
+    var status = select.options[select.selectedIndex].getAttribute('data-value');
+    console.log(status);
+    return Session.set('orderStatus', status);
   },
 
   });
@@ -133,7 +137,12 @@ function getPrices(company, product){
 
 Template.Deliveryorder.helpers({
   deliveryorders(){
-    return DeliveryOrder.find({});
+    if(Session.equals('orderStatus', undefined)){
+      return DeliveryOrder.find({}, {sort: {createdAt: -1}});
+    }else{
+      var status = Session.get('orderStatus');
+      return DeliveryOrder.find({status: status} , {sort: {createdAt: -1}});
+    }
   },
   deliveryManList: function(){
       const user = Meteor.user();

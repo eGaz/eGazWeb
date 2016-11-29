@@ -12,7 +12,6 @@
           <form class="collapse" id="collapseExample" name="newOrder">
 
               <div class="row">
-
                   <div class="col-md-12">
                     <input type="text" class="form-control" name="neighborhood" placeholder= "Bairro">
                   </div>
@@ -38,10 +37,20 @@
       </div>
 
     <!-- Tabela de ordens de entrega-->
+
     <div class="container">
         <div class="row">
+          <div class="col-md-2">
+          <h4>Estado da Ordem</h4> 
+          <select name="filtroStatus" class="form-control">
+            <option data-value="Aberto">Aberto</option>
+            <option data-value="Encaminhado">Encaminhado</option>
+            <option data-value="Entregue">Entregue</option>
+          </select>
+         </div>
             <div class="col-md-12">
                 <h4>Ordens de Entrega </h4>
+
                 <div class="table-responsive">
                 <table class="table .table-condensed">
                     <thead>
