@@ -10,7 +10,6 @@
          <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></span></h4>
 
           <form class="collapse" id="collapseExample" name="newOrder">
-
               <div class="row">
                   <div class="col-md-12">
                     <input type="text" class="form-control" name="neighborhood" placeholder= "Bairro">
@@ -41,11 +40,12 @@
     <div class="container">
         <div class="row">
           <div class="col-md-2">
-          <h4>Estado da Ordem</h4> 
+          <h4>Estado da Ordem</h4>
           <select name="filtroStatus" class="form-control">
             <option data-value="Aberto">Aberto</option>
             <option data-value="Encaminhado">Encaminhado</option>
             <option data-value="Entregue">Entregue</option>
+            <option data-value="">Todas</option>
           </select>
          </div>
             <div class="col-md-12">
@@ -114,11 +114,11 @@
                             </td>
                             <td class="text-center">
                               <select name="orderStatus" class="form-control">
-                              <option value=""> {{status}}</option>
-                              <option data-id="Aberto"> Aberto</option>
-                              <option data-id="Encaminhado">Encaminhado</option>
-                              <option data-id="Entregue">Entregue</option>
-                            </select>
+                                <option value=""> {{status}}</option>
+                                <option data-id="Aberto"> Aberto</option>
+                                <option data-id="Encaminhado">Encaminhado</option>
+                                <option data-id="Entregue">Entregue</option>
+                              </select>
                             </td>
                         </tr>
                         {{/each}}

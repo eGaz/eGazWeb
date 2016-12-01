@@ -11,5 +11,7 @@ Meteor.publish("companies", function(){
 });
 
 Meteor.publish("deliveryorders", function(){
-    return DeliveryOrder.find();
+    var today = new Date();
+    var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
+    return DeliveryOrder.find({createdAt: {$lte: today, $gt: yesterday}});
 });

@@ -138,10 +138,15 @@ function getPrices(company, product){
 Template.Deliveryorder.helpers({
   deliveryorders(){
     if(Session.equals('orderStatus', undefined)){
-      return DeliveryOrder.find({}, {sort: {createdAt: -1}});
+      var orders = DeliveryOrder.find({},{sort: {createdAt: -1}});
+      console.log(orders);
+      return orders;
+    }else if (Session.equals('orderStatus', "")){
+      return DeliveryOrder.find({},{sort: {createdAt: -1} });
     }else{
       var status = Session.get('orderStatus');
-      return DeliveryOrder.find({status: status} , {sort: {createdAt: -1}});
+      var orders = DeliveryOrder.find({status: status}, {sort: {createdAt: -1}}).fetch({});
+      return orders;
     }
   },
   deliveryManList: function(){
@@ -179,7 +184,7 @@ Template.registerHelper("equals", function(a,b){
 });
 
 Template.registerHelper("formatDate", function(date){
-    return moment(date).format('HH:mm:ss DD/MM');
+    return moment(date).format('DD/MM HH:mm:ss');
 });
 
 Template.registerHelper( 'selected', ( v1, v2 ) => {
