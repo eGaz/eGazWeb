@@ -15,7 +15,6 @@ Deps.autorun(function(){
   Meteor.subscribe('companies');
 });
 
-
 if(Meteor.isClient){
   Template.Deliveryorder.onCreated( function() {
 
@@ -86,6 +85,7 @@ if(Meteor.isClient){
     var price = select.options[select.selectedIndex].getAttribute('data-value');
     var order = this._id;
     Meteor.call('updatePrice', order, Number(price))
+    return Session.set('income', price);
   },
 
   'change [name="orderStatus"]': function(event){
@@ -94,7 +94,15 @@ if(Meteor.isClient){
     var order = this._id;
     if(status === ""){
     }else{
-      Meteor.call('updateStatus', order, status);
+      if(status === "Entregue"){
+        var companyId = Meteor.user().company
+        var income = Session.get('income');
+        Meteor.call('updateIncome', companyId, Number(income));
+        Meteor.call('updateStatus', order, status);
+      }
+        else{
+          Meteor.call('updateStatus', order, status);
+        }
     }
   },
 
@@ -135,11 +143,22 @@ function getPrices(company, product){
   return priceList;
 }
 
+function getIncome(company){
+  var today = new Date();
+  var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
+  var income = Company.findOne({"_id": company}).incomes.filter( function(s){
+      console.log(s);
+      return s.createdAt <= today && s.createdAt >= yesterday;
+  });
+
+  console.log(income)
+  return income;
+}
+
 Template.Deliveryorder.helpers({
   deliveryorders(){
     if(Session.equals('orderStatus', undefined)){
       var orders = DeliveryOrder.find({},{sort: {createdAt: -1}});
-      console.log(orders);
       return orders;
     }else if (Session.equals('orderStatus', "")){
       return DeliveryOrder.find({},{sort: {createdAt: -1} });
@@ -173,7 +192,24 @@ Template.Deliveryorder.helpers({
       console.log(prices)
       return prices;
     }
+  },
+});
+
+Template.Income.helpers({
+  income: function(){
+    const user =  Meteor.user();
+    var income = getIncome(user.company);
+    total = 0;
+    i = 0;
+    console.log(income);
+    while(income[i]){
+      total = total + income[i].value;
+        console.log(total);
+        i++;
+    }
+    return total;
   }
+
 });
 
 /** Custom Helpers **/
