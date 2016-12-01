@@ -95,12 +95,13 @@ if(Meteor.isClient){
     if(status === ""){
     }else{
       if(status === "Entregue"){
+        var amount = this.amount;
         var companyId = Meteor.user().company
         var income = Session.get('income');
-        Meteor.call('updateIncome', companyId, Number(income));
+
+        Meteor.call('updateIncome', companyId, Number(income), Number(amount));
         Meteor.call('updateStatus', order, status);
-      }
-        else{
+      }else{
           Meteor.call('updateStatus', order, status);
         }
     }
@@ -147,11 +148,8 @@ function getIncome(company){
   var today = new Date();
   var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
   var income = Company.findOne({"_id": company}).incomes.filter( function(s){
-      console.log(s);
       return s.createdAt <= today && s.createdAt >= yesterday;
   });
-
-  console.log(income)
   return income;
 }
 
@@ -204,7 +202,6 @@ Template.Income.helpers({
     console.log(income);
     while(income[i]){
       total = total + income[i].value;
-        console.log(total);
         i++;
     }
     return total;

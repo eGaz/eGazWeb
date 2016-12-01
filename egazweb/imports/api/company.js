@@ -110,10 +110,13 @@ Meteor.methods({
       Company.update({"_id": companyId, "products._id": productId}, { $addToSet: { "products.$.prices": {       "priceDescription": priceDescription, "price": price     } } });
     },
 
-    'updateIncome': function(companyId, income){
+    'updateIncome': function(companyId, income, amount){
       check(companyId, String)
       check(income, Number)
+      check(amount, Number)
 
-      Company.update(companyId, {$addToSet: {["incomes"]: { "value": income, "createdAt": new Date()}}});
+      var total = income * amount
+
+      Company.update(companyId, {$addToSet: {["incomes"]: { "value": total, "createdAt": new Date()}}});
     }
 });
