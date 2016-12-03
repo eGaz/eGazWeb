@@ -2,23 +2,27 @@ import { Template } from 'meteor/templating';
 import { Accounts } from 'meteor/accounts-base';
 import { Session } from 'meteor/session';
 import { Company } from '../../api/company.js';
-
-
+import { Roles } from 'meteor/alanning:roles'
 Meteor.startup(() => {
   /* The Default Roles to eGaz*/
   /* Adicionar lógica de "if not exist" para não dar problema de consistência
   toda as vezes que for iniciar o projeto não recriar as roles
 
-  Roles.createRole('Gestor');
-  Roles.createRole('Entregador');
-  Roles.createRole('Administrador');
-  Roles.createRole('Colaborador');
-  Roles.createRole('Convidado');
   */
+  var roles = Meteor.roles.find({}).count();
+
+  if(roles > 0){
+    console.log("ok");
+  }else{
+    Roles.createRole('Gestor');
+    Roles.createRole('Entregador');
+    Roles.createRole('Administrador');
+    Roles.createRole('Colaborador');
+    Roles.createRole('Convidado');
+  }
 
     /* Por algum motivo adicionar a role Roles.GLOBAL_GROUP
     não faz possível que se filtre, mesmo usando dois filtros [role, grupo]
-    Roles.addUsersToRoles('Bs4iEWneZA5dT6mWA', 'Administrador');
     */
 });
 
