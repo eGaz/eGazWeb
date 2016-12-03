@@ -145,10 +145,11 @@ function getPrices(company, product){
 }
 
 function getIncome(company){
-  var today = new Date();
-  var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
+  /*Seting the dates filters to start exactly at of 00:00 and end at 23:59 of the current day*/
+  var begin = (function(d){ d.setHours(23,59,59,0); return d})(new Date);
+  var end = (function(d){ d.setHours(0,0,0,0); return d})(new Date);
   var income = Company.findOne({"_id": company}).incomes.filter( function(s){
-      return s.createdAt <= today && s.createdAt >= yesterday;
+      return s.createdAt <= begin && s.createdAt >= end;
   });
   return income;
 }
@@ -197,6 +198,7 @@ Template.Income.helpers({
   income: function(){
     const user =  Meteor.user();
     var income = getIncome(user.company);
+    console.log(income)
     total = 0;
     i = 0;
     console.log(income);

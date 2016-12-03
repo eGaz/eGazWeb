@@ -11,7 +11,8 @@ Meteor.publish("companies", function(){
 });
 
 Meteor.publish("deliveryorders", function(){
-    var today = new Date();
-    var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
-    return DeliveryOrder.find({createdAt: {$lte: today, $gt: yesterday}});
+  /*Seting the dates filters to start exactly at of 00:00 and end at 23:59 of the current day*/
+  var end = (function(d){ d.setHours(23,59,59,0); return d})(new Date);
+  var begin = (function(d){ d.setHours(0,0,0,0); return d})(new Date);
+  return DeliveryOrder.find({createdAt: {$lte: end, $gt: begin}});
 });
