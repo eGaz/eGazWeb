@@ -2,6 +2,7 @@
 
 {{>homelayout}}
 
+
 <div class="container">
    <div class="row">
        <!-- Users Panel -->
@@ -10,9 +11,7 @@
          <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></span></h4>
 
           <form class="collapse" id="collapseExample" name="newOrder">
-
               <div class="row">
-
                   <div class="col-md-12">
                     <input type="text" class="form-control" name="neighborhood" placeholder= "Bairro">
                   </div>
@@ -34,14 +33,32 @@
           </form>
         <br>
           </div>
+            <!-- Manager (Gestor) only can see Daily Revenues -->
+            {{#if isInRole 'Gestor'}}
+            <div class="col-md-6">
+                <h4 class="page-header">Faturamento Acumulado: </h4>
+                {{>Income}}
+            </div>
+            {{/if}}
         </div>
       </div>
 
     <!-- Tabela de ordens de entrega-->
+
     <div class="container">
         <div class="row">
+          <div class="col-md-2">
+          <h4>Estado da Ordem</h4>
+          <select name="filtroStatus" class="form-control">
+            <option data-value="Aberto">Aberto</option>
+            <option data-value="Encaminhado">Encaminhado</option>
+            <option data-value="Entregue">Entregue</option>
+            <option data-value="">Todas</option>
+          </select>
+         </div>
             <div class="col-md-12">
                 <h4>Ordens de Entrega </h4>
+
                 <div class="table-responsive">
                 <table class="table .table-condensed">
                     <thead>
@@ -53,7 +70,7 @@
                             <th class="text-center">Quantidade</th>
                             <th class="text-center">Item</th>
                             <th class="text-center">Preço</th>
-                            <th class="text-center">Ações</th>
+                            <th class="text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody align="center">
@@ -79,7 +96,7 @@
                             </td>
 
                             <td>
-                                <form class="in-line-form" name="changeOrderAmount">
+                                <form name="changeOrderAmount">
                                     <input class="form-control" type="number" name="amount" value={{amount}}>
                                 </form>
 
@@ -98,12 +115,19 @@
                                 <option value=""> Escolha </option>
                                   {{#each pricesList}}
                                   {{#each prices}}
-                                    <option data-value="{{price}}">{{priceDescription}} : {{price}} R$</option>
+                                    <option data-value="{{price}}">{{priceDescription}}: {{price}} R$</option>
                                     {{/each}}
                                   {{/each}}
                               </select>
                             </td>
-                            <td class="text-center">ok</td>
+                            <td class="text-center">
+                              <select name="orderStatus" class="form-control">
+                                <option value=""> {{status}}</option>
+                                <option data-id="Aberto"> Aberto</option>
+                                <option data-id="Encaminhado">Encaminhado</option>
+                                <option data-id="Entregue">Entregue</option>
+                              </select>
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -113,32 +137,8 @@
         </div>
 </div>
 
-<!-- Modal de produtos-->
+</template>
 
-<div class="modal fade" id="productModal" role="dialog">
-   <div class="modal-dialog">
-
-     <!-- Modal content-->
-     <div class="modal-content">
-
-       <div class="modal-body">
-         <h4 class="modal-title" id="myModal">
-           Escolha um produto
-       </h4>
-         <form name="getProducts">
-           <input list="productsList" name ="productsinput">
-           <datalist id= "productsList">
-             {{#each products.products}}
-             <option value="{{_id}}"> {{alias}}</option>
-              {{/each}}
-         </datalist>
-         <input type="submit">
-        </form>
-       </div>
-     </div>
-
-   </div>
- </div>
-
-
+<template name="Income">
+    <p> {{income}} R$ </p>
 </template>

@@ -25,13 +25,19 @@ Product = new SimpleSchema({
   prices: {type: [Prices], optional: true}
 });
 
+Income = new SimpleSchema({
+  value: {type: Number, decimal: true},
+  createdAt: {type: Date}
+});
+
 Company.attachSchema(new SimpleSchema({
   fantasyName: {type: String},
   name: {type: String},
   cnpj: {type: Number},
   createdAt: {type: Date},
   employees: {type: [Employees], optional: true},
-  products: {type: [Product], optional: true}
+  products: {type: [Product], optional: true},
+  incomes: {type: [Income], optional: true}
 }));
 
 Meteor.methods({
@@ -102,6 +108,15 @@ Meteor.methods({
       check(price, Number)
 
       Company.update({"_id": companyId, "products._id": productId}, { $addToSet: { "products.$.prices": {       "priceDescription": priceDescription, "price": price     } } });
+    },
 
+    'updateIncome': function(companyId, income, amount){
+      check(companyId, String)
+      check(income, Number)
+      check(amount, Number)
+
+      var total = income * amount
+
+      Company.update(companyId, {$addToSet: {["incomes"]: { "value": total, "createdAt": new Date()}}});
     }
 });

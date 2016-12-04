@@ -15,7 +15,6 @@ Deps.autorun(function(){
   Meteor.subscribe('companies');
 });
 
-
 if(Meteor.isClient){
   Template.Deliveryorder.onCreated( function() {
 
@@ -70,22 +69,47 @@ if(Meteor.isClient){
       console.log($(event.currentTarget.innerHTML));
 
       Meteor.call("updateDeliveryMan", order, deliveryManId);
-  },
-
+    },
   'change [name="productSelect"]': function(event){
-    var sel = event.target;
-    var productId = sel.options[sel.selectedIndex].getAttribute('data-id');
+    var select = event.target;
+    var productId = select.options[select.selectedIndex].getAttribute('data-id');
     var order = this._id;
     Meteor.call('updateItem', order, productId);
     return Session.set('productId', productId);
   },
 
   'change [name="priceSelect"]': function(event){
-  var sel = event.target;
-  var price = sel.options[sel.selectedIndex].getAttribute('data-value');
-  console.log(price)
-  var order = this._id;
-  Meteor.call('updatePrice', order, Number(price))
+    var select = event.target;
+    var price = select.options[select.selectedIndex].getAttribute('data-value');
+    var order = this._id;
+    Meteor.call('updatePrice', order, Number(price))
+    return Session.set('income', price);
+  },
+
+  'change [name="orderStatus"]': function(event){
+    var select = event.target;
+    var status = select.options[select.selectedIndex].getAttribute('data-id');
+    var order = this._id;
+    if(status === ""){
+    }else{
+      if(status === "Entregue"){
+        var amount = this.amount;
+        var companyId = Meteor.user().company
+        var income = Session.get('income');
+
+        Meteor.call('updateIncome', companyId, Number(income), Number(amount));
+        Meteor.call('updateStatus', order, status);
+      }else{
+          Meteor.call('updateStatus', order, status);
+        }
+    }
+  },
+
+  'change [name="filtroStatus"]': function(event){
+    var select = event.target;
+    var status = select.options[select.selectedIndex].getAttribute('data-value');
+    console.log(status);
+    return Session.set('orderStatus', status);
   },
 
   });
@@ -118,9 +142,28 @@ function getPrices(company, product){
   return priceList;
 }
 
+function getIncome(company){
+  /*Seting the dates filters to start exactly at of 00:00 and end at 23:59 of the current day*/
+  var begin = (function(d){ d.setHours(23,59,59,0); return d})(new Date);
+  var end = (function(d){ d.setHours(0,0,0,0); return d})(new Date);
+  var income = Company.findOne({"_id": company}).incomes.filter( function(s){
+      return s.createdAt <= begin && s.createdAt >= end;
+  });
+  return income;
+}
+
 Template.Deliveryorder.helpers({
   deliveryorders(){
-    return DeliveryOrder.find({});
+    if(Session.equals('orderStatus', undefined)){
+      var orders = DeliveryOrder.find({},{sort: {createdAt: -1}});
+      return orders;
+    }else if (Session.equals('orderStatus', "")){
+      return DeliveryOrder.find({},{sort: {createdAt: -1} });
+    }else{
+      var status = Session.get('orderStatus');
+      var orders = DeliveryOrder.find({status: status}, {sort: {createdAt: -1}}).fetch({});
+      return orders;
+    }
   },
   deliveryManList: function(){
       const user = Meteor.user();
@@ -146,7 +189,24 @@ Template.Deliveryorder.helpers({
       console.log(prices)
       return prices;
     }
+  },
+});
+
+Template.Income.helpers({
+  income: function(){
+    const user =  Meteor.user();
+    var income = getIncome(user.company);
+    console.log(income)
+    total = 0;
+    i = 0;
+    console.log(income);
+    while(income[i]){
+      total = total + income[i].value;
+        i++;
+    }
+    return total;
   }
+
 });
 
 /** Custom Helpers **/
@@ -157,7 +217,7 @@ Template.registerHelper("equals", function(a,b){
 });
 
 Template.registerHelper("formatDate", function(date){
-    return moment(date).format('HH:mm:ss DD/MM');
+    return moment(date).format('DD/MM HH:mm:ss');
 });
 
 Template.registerHelper( 'selected', ( v1, v2 ) => {
