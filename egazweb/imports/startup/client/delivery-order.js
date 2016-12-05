@@ -181,10 +181,8 @@ Template.Deliveryorder.helpers({
       return
     }else{
       var productId = Session.get('productId')
-      console.log(productId);
       const user = Meteor.user();
       var prices = getPrices(user.company, productId);
-      console.log(prices)
       return prices;
     }
   },
@@ -212,6 +210,24 @@ Template.Income.helpers({
 /** Compares two arguments **/
 Template.registerHelper("equals", function(a,b){
     return a === b;
+});
+
+Template.registerHelper("productName", function(id){
+  var product = Company.findOne({"products._id": id}).products.filter( function(s){
+    return s._id === id;
+  });
+  return product[0].alias;
+});
+
+Template.registerHelper("priceName", function(id, price){
+  var priceList = Company.findOne({"products._id": id}).products.filter( function(s){
+    return s._id === id;
+  }); 
+  var name = priceList[0].prices.filter( function(s){
+    return s.price === price;
+  });
+  console.log(name);
+  return name[0].priceDescription + " : " + name[0].price + " R$";
 });
 
 Template.registerHelper("formatDate", function(date){

@@ -8,9 +8,9 @@
        <!-- Users Panel -->
        <div class="col-md-6">
          <h4 class="page-header">Nova Ordem de entrega
-         <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></span></h4>
+         <span class="glyphicon glyphicon-plus" data-toggle="collapse" href="#collapseOrder" aria-expanded="false" aria-controls="collapseExample"></span></h4>
 
-          <form class="collapse" id="collapseExample" name="newOrder">
+          <form class="collapse" id="collapseOrder" name="newOrder">
               <div class="row">
                   <div class="col-md-12">
                     <input type="text" class="form-control" name="neighborhood" placeholder= "Bairro">
@@ -49,12 +49,6 @@
         <div class="row">
 
           <h4>Estado da Ordem</h4>
-          <!--<select name="filtroStatus" class="form-control">
-            <option data-value="Aberto">Aberto</option>
-            <option data-value="Encaminhado">Encaminhado</option>
-            <option data-value="Entregue">Entregue</option>
-            <option data-value="">Todas</option>
-          </select>-->
           <form>
             <label class="radio-inline"><input type="radio" name="radio-filter" value="Aberto">Aberto</label>
             <label class="radio-inline"><input type="radio" name="radio-filter" value="Encaminhado">Encaminhado</label>
@@ -108,21 +102,36 @@
                             </td>
                             <td>
                                 <select name="productSelect" class="form-control">
-                                  <option value=""> Escolha </option>
-                                  {{#each products.products}}
-                                      <option data-id="{{_id}}" value="{{alias}}"> {{alias}} </option>
-                                   {{/each}}
+                                   {{#if equals item undefined}}
+                                    <option value=""> Escolha </option>
+                                    {{#each products.products}}
+                                        <option data-id="{{_id}}" value="{{alias}}"> {{alias}} </option>
+                                     {{/each}}
+                                    {{else}}
+                                      <option value="{{_id}}"> {{ productName item }} </option>
+                                      {{#each products.products}}
+                                          <option data-id="{{_id}}" value="{{alias}}"> {{alias}} </option>
+                                       {{/each}}
+                                   {{/if}}
                                  </select>
-                                <!--<span class="glyphicon glyphicon-zoom-in" data-toggle="modal" data-target="#productModal"></span>-->
                             </td>
                             <td>
                               <select name="priceSelect" class="form-control">
-                                <option value=""> Escolha </option>
-                                  {{#each pricesList}}
-                                  {{#each prices}}
-                                    <option data-value="{{price}}">{{priceDescription}}: {{price}} R$</option>
+                                {{#if equals price undefined}}
+                                  <option value=""> Escolha </option>
+                                    {{#each pricesList}}
+                                    {{#each prices}}
+                                      <option data-value="{{price}}">{{priceDescription}}: {{price}} R$</option>
+                                      {{/each}}
                                     {{/each}}
-                                  {{/each}}
+                                    {{else}}
+                                      <option value="price"> {{priceName item price }} </option>
+                                        {{#each pricesList}}
+                                        {{#each prices}}
+                                          <option data-value="{{price}}">{{priceDescription}}: {{price}} R$</option>
+                                          {{/each}}
+                                        {{/each}}
+                                {{/if}}
                               </select>
                             </td>
                             <td class="text-center">
