@@ -86,19 +86,26 @@
                             <td>{{formatDate createdAt}}</td>
                             <td>
                                 <select name="deliveryMan" class="form-control" id="listaDeEntregadores">
-                                    {{#each deliveryManList}}
-                                      {{#each emails}}
-                                        <option selected="{{ selected delivery.[0] 'entregador2@example.com' }}">{{address}}</option>
+                                    {{#if equals deliveryMan undefined}}
+                                      <option value=""> Escolha </option>
+                                      {{#each deliveryManList}}
+                                        {{#each emails}}
+                                          <option>{{address}}</option>
+                                        {{/each}}
                                       {{/each}}
-                                    {{/each}}
+                                      {{else}}
+                                        <option> {{deliveryManEmail deliveryMan}} </option>
+                                        {{#each deliveryManList}}
+                                          {{#each emails}}
+                                            <option>{{address}}</option>
+                                          {{/each}}
+                                        {{/each}}
+                                    {{/if}}
                                 </select>
                             </td>
 
                             <td>
-                                <form name="changeOrderAmount">
-                                    <input class="form-control" type="number" name="amount" value={{amount}}>
-                                </form>
-
+                                <input name="changeOrderAmount" class="form-control" type="number" value={{amount}}>
                             </td>
                             <td>
                                 <select name="productSelect" class="form-control">
