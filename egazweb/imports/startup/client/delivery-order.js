@@ -105,11 +105,9 @@ if(Meteor.isClient){
     }
   },
 
-  'change [name="filtroStatus"]': function(event){
-    var select = event.target;
-    var status = select.options[select.selectedIndex].getAttribute('data-value');
-    console.log(status);
-    return Session.set('orderStatus', status);
+  'change .radio-inline': function(event){
+    var select = event.target.value;
+    return Session.set('orderStatus', select);
   },
 
   });
@@ -155,7 +153,7 @@ function getIncome(company){
 Template.Deliveryorder.helpers({
   deliveryorders(){
     if(Session.equals('orderStatus', undefined)){
-      var orders = DeliveryOrder.find({},{sort: {createdAt: -1}});
+      var orders = DeliveryOrder.find({status: "Aberto"},{sort: {createdAt: -1}});
       return orders;
     }else if (Session.equals('orderStatus', "")){
       return DeliveryOrder.find({},{sort: {createdAt: -1} });

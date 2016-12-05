@@ -47,15 +47,20 @@
 
     <div class="container">
         <div class="row">
-          <div class="col-md-2">
+
           <h4>Estado da Ordem</h4>
-          <select name="filtroStatus" class="form-control">
+          <!--<select name="filtroStatus" class="form-control">
             <option data-value="Aberto">Aberto</option>
             <option data-value="Encaminhado">Encaminhado</option>
             <option data-value="Entregue">Entregue</option>
             <option data-value="">Todas</option>
-          </select>
-         </div>
+          </select>-->
+          <form>
+            <label class="radio-inline"><input type="radio" name="radio-filter" value="Aberto">Aberto</label>
+            <label class="radio-inline"><input type="radio" name="radio-filter" value="Encaminhado">Encaminhado</label>
+            <label class="radio-inline"><input type="radio" name="radio-filter" value="Entregue">Entregue</label>
+            <label class="radio-inline"><input type="radio" name="radio-filter" value="">Todas</label>
+          </form>
             <div class="col-md-12">
                 <h4>Ordens de Entrega </h4>
 
