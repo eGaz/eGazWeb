@@ -39,6 +39,9 @@
                 {{> Product}}
             {{/if}}
         {{/if}}
+        {{#if isInRole 'Colaborador'}}
+            {{> Deliveryorder}}
+        {{/if}}
       {{/unless}}
 
 

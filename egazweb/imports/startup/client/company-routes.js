@@ -1,6 +1,5 @@
 import '../../ui/layout/homelayout.html'
 import '../../ui/layout/companylayout.html'
-import '../../ui/layout/delivery-orderlayout.html'
 import '../../ui/layout/employeelayout.html'
 
 Router.route('/company', function(){

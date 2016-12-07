@@ -5,6 +5,7 @@ import '../../ui/layout/gestorlayout.html'
 import '../../ui/layout/managementlayout.html'
 import '../../ui/layout/managerlayout.html'
 import '../../ui/layout/productlayout.html'
+import '../../ui/layout/delivery-orderlayout.html'
 
 var PostLogout = function(){
   Router.go('/');

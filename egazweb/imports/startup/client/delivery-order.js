@@ -185,6 +185,13 @@ Template.Deliveryorder.helpers({
       return prices;
     }
   },
+  checkUserLoggedIn: function(){
+      const user = Meteor.user();
+      if(!user){
+          Router.go('/');
+      }
+
+  }
 });
 
 Template.Income.helpers({
